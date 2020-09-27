@@ -1,0 +1,14 @@
+package net.lz1998.pbbot.alias
+
+import onebot.OnebotEvent
+
+typealias PrivateMessageEvent = OnebotEvent.PrivateMessageEvent
+typealias GroupMessageEvent = OnebotEvent.GroupMessageEvent
+typealias GroupDecreaseNoticeEvent = OnebotEvent.GroupDecreaseNoticeEvent
+typealias GroupIncreaseNoticeEvent = OnebotEvent.GroupIncreaseNoticeEvent
+typealias GroupUploadNoticeEvent = OnebotEvent.GroupUploadNoticeEvent
+typealias GroupAdminNoticeEvent = OnebotEvent.GroupAdminNoticeEvent
+typealias GroupBanNoticeEvent = OnebotEvent.GroupBanNoticeEvent
+typealias FriendAddNoticeEvent = OnebotEvent.FriendAddNoticeEvent
+typealias FriendRequestEvent = OnebotEvent.FriendRequestEvent
+typealias GroupRequestEvent = OnebotEvent.GroupRequestEvent

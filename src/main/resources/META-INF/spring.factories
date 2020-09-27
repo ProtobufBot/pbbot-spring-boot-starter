@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+net.lz1998.pbbot.boot.PbBotAutoConfiguration
