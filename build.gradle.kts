@@ -19,6 +19,7 @@ plugins {
     maven
     `maven-publish`
     java
+    signing
     kotlin("jvm") version "1.4.10"
     kotlin("kapt") version "1.4.10"
 }
@@ -81,4 +82,49 @@ tasks {
 }
 tasks.install {
     dependsOn("shadowJar")
+}
+publishing {
+    publications {
+        create<MavenPublication>("shadow") {
+            from(components["java"])
+            groupId = "net.lz1998"
+            artifactId = "pbbot-spring-boot-starter"
+            version = "0.0.2"
+            artifact(tasks["shadowJar"])
+            pom {
+                name.set("pbbot-spring-boot-starter")
+                description.set("A spring boot starter for qq bot development.")
+                url.set("https://cq.lz1998.net")
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("lz1998")
+                        name.set("lizheng")
+                        email.set("875543533@qq.com")
+                    }
+                }
+                scm {
+                    url.set("scm:git:git@github.com:lz1998/spring-cq.git")
+                    developerConnection.set("scm:git:git@github.com:lz1998/spring-cq.git")
+                    connection.set("scm:git:git@github.com:lz1998/spring-cq.git")
+                }
+
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            setUrl("https://oss.sonatype.org/service/local/staging/deploy/maven2")
+            credentials {
+                username="xxx"
+                password="xxx"
+            }
+        }
+    }
 }
