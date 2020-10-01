@@ -10,6 +10,7 @@ buildscript {
 }
 
 plugins {
+    id("com.github.johnrengelman.shadow") version "4.0.4"
     id("org.springframework.boot") version "2.3.4.RELEASE"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
     id("com.google.protobuf") version "0.8.13"
@@ -77,7 +78,7 @@ tasks {
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
     }
-    jar {
-        enabled = true
-    }
+}
+tasks.install {
+    dependsOn("shadowJar")
 }
