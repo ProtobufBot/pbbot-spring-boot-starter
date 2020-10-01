@@ -15,32 +15,47 @@ plugins {
     id("com.google.protobuf") version "0.8.13"
     kotlin("plugin.spring") version "1.4.0"
 
+    maven
     `maven-publish`
     java
     kotlin("jvm") version "1.4.10"
+    kotlin("kapt") version "1.4.10"
 }
 
 group = "net.lz1998"
-version = "0.0.1"
+version = "0.0.2"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation("com.google.protobuf:protobuf-java:3.12.2")
-    implementation("com.google.protobuf:protobuf-java-util:3.12.2")
+    implementation("com.google.protobuf:protobuf-javalite:3.8.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
 
     implementation(kotlin("stdlib-jdk8"))
-    testCompile("junit", "junit", "4.12")
+    testImplementation("junit", "junit", "4.12")
 }
 
 protobuf {
     generatedFilesBaseDir = "$projectDir/src"
     println(generatedFilesBaseDir)
-    protoc { artifact = "com.google.protobuf:protoc:3.7.0" }
+    protoc {
+        // You still need protoc like in the non-Android case
+        artifact = "com.google.protobuf:protoc:3.8.0"
+    }
+    generateProtoTasks {
+        all().forEach {
+            it.builtins {
+                remove("java")
+                id("java") {
+                    option("lite")
+                }
+            }
+        }
+    }
 }
 sourceSets {
     main {
@@ -62,5 +77,7 @@ tasks {
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
     }
+    jar {
+        enabled = true
+    }
 }
-

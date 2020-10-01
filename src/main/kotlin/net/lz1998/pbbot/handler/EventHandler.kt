@@ -1,6 +1,6 @@
 package net.lz1998.pbbot.handler
 
-import com.google.protobuf.Message
+import com.google.protobuf.MessageLite
 import net.lz1998.pbbot.bot.BotPlugin
 import net.lz1998.pbbot.boot.BotProperties
 import net.lz1998.pbbot.bot.Bot
@@ -52,7 +52,7 @@ open class EventHandler {
         }
     }
 
-    open fun handleUnknown(event: Message?) {
+    open fun handleUnknown(event: MessageLite?) {
 
     }
 

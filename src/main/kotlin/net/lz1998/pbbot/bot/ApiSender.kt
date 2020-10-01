@@ -1,7 +1,8 @@
 package net.lz1998.pbbot.bot
 
 import com.fasterxml.jackson.databind.util.LRUMap
-import com.google.protobuf.Message
+import com.google.protobuf.MessageLite
+import com.google.protobuf.MessageLiteOrBuilder
 import kotlinx.coroutines.*
 import net.lz1998.pbbot.alias.*
 import org.springframework.web.socket.BinaryMessage
@@ -11,7 +12,7 @@ import java.util.*
 class ApiSender {
     val echoFutureMap = LRUMap<String, CompletableDeferred<Frame>>(128, 1024)
 
-    fun callApi(session: WebSocketSession, botId: Long, apiReq: Message): Message? {
+    fun callApi(session: WebSocketSession, botId: Long, apiReq: MessageLite): MessageLite? {
         val echo = UUID.randomUUID().toString()
         val futureResp = CompletableDeferred<Frame>()
         echoFutureMap.put(echo, futureResp)

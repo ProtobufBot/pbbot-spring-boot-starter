@@ -1,12 +1,11 @@
 package net.lz1998.pbbot.handler
 
-import com.google.protobuf.util.JsonFormat
 import net.lz1998.pbbot.alias.Frame
 import net.lz1998.pbbot.bot.BotFactory
 import net.lz1998.pbbot.bot.MiraiBot
 import net.lz1998.pbbot.boot.EventProperties
 import org.springframework.web.socket.*
-import org.springframework.web.socket.handler.AbstractWebSocketHandler
+import org.springframework.web.socket.handler.BinaryWebSocketHandler
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.ThreadPoolExecutor
@@ -16,12 +15,10 @@ open class WebSocketHandler(
     eventProperties: EventProperties,
     var botFactory: BotFactory,
     var frameHandler: FrameHandler
-) : AbstractWebSocketHandler() {
+) : BinaryWebSocketHandler() {
     val botMap = mutableMapOf<Long, MiraiBot>()
 
     val sessionMap = mutableMapOf<Long, WebSocketSession>()
-
-    val jsonFormatParser: JsonFormat.Parser = JsonFormat.parser().ignoringUnknownFields()
 
     var executor: ExecutorService = ThreadPoolExecutor(
         eventProperties.corePoolSize,
@@ -52,15 +49,6 @@ open class WebSocketHandler(
         botMap.remove(xSelfId)
     }
 
-    override fun handleTextMessage(session: WebSocketSession, message: TextMessage) {
-        val frameBuilder = Frame.newBuilder()
-        jsonFormatParser.merge(message.payload, frameBuilder)
-        val frame = frameBuilder.build()
-        session.sendMessage(PingMessage())
-        executor.execute {
-            frameHandler.handleFrame(frame)
-        }
-    }
 
     override fun handleBinaryMessage(session: WebSocketSession, message: BinaryMessage) {
         val frame = Frame.parseFrom(message.payload)
