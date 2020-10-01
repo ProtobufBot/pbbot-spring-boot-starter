@@ -14,10 +14,10 @@ import org.springframework.context.ApplicationContext
 open class EventHandler {
 
     @Autowired
-    lateinit var applicationContext: ApplicationContext
+    open lateinit var applicationContext: ApplicationContext
 
     @Autowired
-    lateinit var botProperties: BotProperties
+    open lateinit var botProperties: BotProperties
 
 
     open fun handlePrivateMessageEvent(bot: Bot, event: PrivateMessageEvent) {

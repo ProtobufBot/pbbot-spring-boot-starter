@@ -49,9 +49,9 @@ class BotBean {
     fun createWebSocketContainer(): ServletServerContainerFactoryBean? {
         val container = ServletServerContainerFactoryBean()
         // ws 传输数据的时候，数据过大有时候会接收不到，所以在此处设置bufferSize
-        container.setMaxTextMessageBufferSize(miraiProperties.maxTextMessageBufferSize)
-        container.setMaxBinaryMessageBufferSize(miraiProperties.maxBinaryMessageBufferSize)
-        container.setMaxSessionIdleTimeout(miraiProperties.maxSessionIdleTimeout)
+        container.maxTextMessageBufferSize = miraiProperties.maxTextMessageBufferSize
+        container.maxBinaryMessageBufferSize = miraiProperties.maxBinaryMessageBufferSize
+        container.maxSessionIdleTimeout = miraiProperties.maxSessionIdleTimeout
         return container
     }
 }

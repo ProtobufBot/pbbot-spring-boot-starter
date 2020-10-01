@@ -9,8 +9,9 @@ import org.springframework.web.socket.BinaryMessage
 import org.springframework.web.socket.WebSocketSession
 import java.util.*
 
-class ApiSender {
-    val echoFutureMap = LRUMap<String, CompletableDeferred<Frame>>(128, 1024)
+
+open class ApiSender {
+    open val echoFutureMap = LRUMap<String, CompletableDeferred<Frame>>(128, 1024)
 
     fun callApi(session: WebSocketSession, botId: Long, apiReq: MessageLite): MessageLite? {
         val echo = UUID.randomUUID().toString()

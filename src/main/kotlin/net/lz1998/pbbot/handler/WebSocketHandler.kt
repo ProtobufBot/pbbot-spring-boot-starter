@@ -13,14 +13,14 @@ import java.util.concurrent.TimeUnit
 
 open class WebSocketHandler(
     eventProperties: EventProperties,
-    var botFactory: BotFactory,
-    var frameHandler: FrameHandler
+    open var botFactory: BotFactory,
+    open var frameHandler: FrameHandler
 ) : BinaryWebSocketHandler() {
-    val botMap = mutableMapOf<Long, MiraiBot>()
+    open val botMap = mutableMapOf<Long, MiraiBot>()
 
-    val sessionMap = mutableMapOf<Long, WebSocketSession>()
+    open val sessionMap = mutableMapOf<Long, WebSocketSession>()
 
-    var executor: ExecutorService = ThreadPoolExecutor(
+    open var executor: ExecutorService = ThreadPoolExecutor(
         eventProperties.corePoolSize,
         eventProperties.maxPoolSize,
         eventProperties.keepAliveTime,
