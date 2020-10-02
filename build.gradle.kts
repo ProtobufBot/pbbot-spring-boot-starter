@@ -25,7 +25,7 @@ plugins {
 }
 
 group = "net.lz1998"
-version = "0.0.2"
+version = "0.0.3"
 
 repositories {
     mavenCentral()
@@ -92,9 +92,6 @@ publishing {
     publications {
         create<MavenPublication>("shadow") {
             from(components["java"])
-            groupId = "net.lz1998"
-            artifactId = "pbbot-spring-boot-starter"
-            version = "0.0.2"
             artifact(tasks["shadowJar"])
             pom {
                 name.set("pbbot-spring-boot-starter")
