@@ -1,12 +1,13 @@
 package net.lz1998.pbbot.utils
 
-import onebot.OnebotBase
+import net.lz1998.pbbot.alias.Message
+import net.lz1998.pbbot.alias.MessageChain
 
-fun String.toMessageList(): List<OnebotBase.Message> {
+fun String.toMessageList(): MessageChain {
     var interpreting = false
     val sb = StringBuilder()
     var index = 0
-    val messageList = mutableListOf<OnebotBase.Message>()
+    val messageList = mutableListOf<Message>()
     this.forEach { c: Char ->
         if (c == '[') {
             if (interpreting) {
@@ -45,7 +46,7 @@ fun String.toMessageList(): List<OnebotBase.Message> {
     return messageList
 }
 
-private fun cqTextToMessageInternal(message: String): OnebotBase.Message {
+private fun cqTextToMessageInternal(message: String): Message {
     if (message.startsWith("[CQ:") && message.endsWith("]")) {
         val parts = message.substring(4, message.length - 1).split(delimiters = arrayOf(","), limit = 2)
 
@@ -55,10 +56,10 @@ private fun cqTextToMessageInternal(message: String): OnebotBase.Message {
         } else {
             HashMap()
         }
-        return OnebotBase.Message.newBuilder().setType(parts[0]).putAllData(args).build()
+        return Message.newBuilder().setType(parts[0]).putAllData(args).build()
     }
 
-    return OnebotBase.Message.newBuilder().setType("text").putAllData(mapOf("text" to message.unescape())).build()
+    return Message.newBuilder().setType("text").putAllData(mapOf("text" to message.unescape())).build()
 }
 
 private fun String.toMap(): HashMap<String, String> {
@@ -72,7 +73,7 @@ private fun String.toMap(): HashMap<String, String> {
 
 private fun String.unescape(): String {
     return replace("&amp;", "&")
-            .replace("&#91;", "[")
-            .replace("&#93;", "]")
-            .replace("&#44;", ",")
+        .replace("&#91;", "[")
+        .replace("&#93;", "]")
+        .replace("&#44;", ",")
 }

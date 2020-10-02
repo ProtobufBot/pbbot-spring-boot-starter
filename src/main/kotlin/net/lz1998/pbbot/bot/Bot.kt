@@ -27,6 +27,22 @@ interface Bot {
     }
 
     /**
+     * 发送私聊消息
+     *
+     * @param user_id          对方 QQ 号
+     * @param messageChain     消息链
+     * @param auto_escape      消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
+     * @return 结果
+     */
+    fun sendPrivateMsg(user_id: Long, messageChain: MessageChain, auto_escape: Boolean): SendPrivateMsgResp? {
+        val reqBuilder = SendPrivateMsgReq.newBuilder()
+        reqBuilder.userId = user_id
+        reqBuilder.addAllMessage(messageChain)
+        reqBuilder.autoEscape = auto_escape
+        return apiSender.sendPrivateMsg(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
      * 发送群消息
      *
      * @param group_id    群号
@@ -38,6 +54,22 @@ interface Bot {
         val reqBuilder = SendGroupMsgReq.newBuilder()
         reqBuilder.groupId = group_id
         reqBuilder.addAllMessage(message.toMessageList())
+        reqBuilder.autoEscape = auto_escape
+        return apiSender.sendGroupMsg(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
+     * 发送群消息
+     *
+     * @param group_id         群号
+     * @param messageChain     消息链
+     * @param auto_escape      消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
+     * @return 结果
+     */
+    fun sendGroupMsg(group_id: Long, messageChain: MessageChain, auto_escape: Boolean): SendGroupMsgResp? {
+        val reqBuilder = SendGroupMsgReq.newBuilder()
+        reqBuilder.groupId = group_id
+        reqBuilder.addAllMessage(messageChain)
         reqBuilder.autoEscape = auto_escape
         return apiSender.sendGroupMsg(botSession, selfId, reqBuilder.build())
     }
@@ -138,7 +170,12 @@ interface Bot {
      * @param duration      专属头衔有效期，单位秒，-1 表示永久，不过此项似乎没有效果，可能是只有某些特殊的时间长度有效，有待测试
      * @return 结果
      */
-    fun setGroupSpecialTitle(group_id: Long, user_id: Long, special_title: String?, duration: Long): SetGroupSpecialTitleResp? {
+    fun setGroupSpecialTitle(
+        group_id: Long,
+        user_id: Long,
+        special_title: String?,
+        duration: Long
+    ): SetGroupSpecialTitleResp? {
         val reqBuilder = SetGroupSpecialTitleReq.newBuilder()
         reqBuilder.groupId = group_id
         reqBuilder.userId = user_id
@@ -173,7 +210,12 @@ interface Bot {
      * @param reason   拒绝理由（仅在拒绝时有效）
      * @return 结果
      */
-    fun setGroupAddRequest(flag: String?, sub_type: String?, approve: Boolean, reason: String?): SetGroupAddRequestResp? {
+    fun setGroupAddRequest(
+        flag: String?,
+        sub_type: String?,
+        approve: Boolean,
+        reason: String?
+    ): SetGroupAddRequestResp? {
         val reqBuilder = SetGroupAddRequestReq.newBuilder()
         reqBuilder.flag = flag
         reqBuilder.subType = sub_type
