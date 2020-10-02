@@ -68,6 +68,10 @@ sourceSets {
         }
     }
 }
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
 
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -83,6 +87,7 @@ tasks {
 tasks.install {
     dependsOn("shadowJar")
 }
+
 publishing {
     publications {
         create<MavenPublication>("shadow") {
@@ -122,9 +127,14 @@ publishing {
         maven {
             setUrl("https://oss.sonatype.org/service/local/staging/deploy/maven2")
             credentials {
-                username="xxx"
-                password="xxx"
+                username = properties["sonatype_username"].toString()
+                password = properties["sonatype_password"].toString()
             }
         }
     }
+}
+signing {
+    useGpgCmd()
+//    sign(configurations.archives.get())
+    sign(publishing.publications["shadow"])
 }
