@@ -10,13 +10,11 @@ buildscript {
 }
 
 plugins {
-    id("com.github.johnrengelman.shadow") version "4.0.4"
     id("org.springframework.boot") version "2.3.4.RELEASE"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
     id("com.google.protobuf") version "0.8.13"
     kotlin("plugin.spring") version "1.4.0"
 
-    maven
     `maven-publish`
     java
     signing
@@ -84,15 +82,12 @@ tasks {
         kotlinOptions.jvmTarget = "1.8"
     }
 }
-tasks.install {
-    dependsOn("shadowJar")
-}
 
 publishing {
     publications {
-        create<MavenPublication>("shadow") {
+        create<MavenPublication>("maven") {
             from(components["java"])
-            artifact(tasks["shadowJar"])
+            artifact(tasks["jar"])
             pom {
                 name.set("pbbot-spring-boot-starter")
                 description.set("A spring boot starter for qq bot development.")
@@ -108,6 +103,11 @@ publishing {
                         id.set("lz1998")
                         name.set("lizheng")
                         email.set("875543533@qq.com")
+                    }
+                    developer {
+                        id.set("life")
+                        name.set("wangguogang")
+                        email.set("13122192336@163.com")
                     }
                 }
                 scm {
@@ -132,6 +132,5 @@ publishing {
 }
 signing {
     useGpgCmd()
-//    sign(configurations.archives.get())
-    sign(publishing.publications["shadow"])
+    sign(publishing.publications["maven"])
 }
