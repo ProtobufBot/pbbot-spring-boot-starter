@@ -23,7 +23,7 @@ plugins {
 }
 
 group = "net.lz1998"
-version = "0.0.3"
+version = "0.0.5"
 
 repositories {
     mavenCentral()
@@ -81,13 +81,15 @@ tasks {
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
     }
+    jar {
+        enabled = true
+    }
 }
 
 publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
-            artifact(tasks["jar"])
             pom {
                 name.set("pbbot-spring-boot-starter")
                 description.set("A spring boot starter for qq bot development.")
