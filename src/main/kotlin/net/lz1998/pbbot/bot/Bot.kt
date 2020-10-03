@@ -193,7 +193,7 @@ interface Bot {
      * @param remark  添加后的好友备注（仅在同意时有效）
      * @return 结果
      */
-    fun setFriendAddRequest(flag: String?, approve: Boolean, remark: String?): SetFriendAddRequestResp? {
+    fun setFriendAddRequest(flag: String, approve: Boolean, remark: String?): SetFriendAddRequestResp? {
         val reqBuilder = SetFriendAddRequestReq.newBuilder()
         reqBuilder.flag = flag
         reqBuilder.approve = approve
@@ -211,7 +211,7 @@ interface Bot {
      * @return 结果
      */
     fun setGroupAddRequest(
-        flag: String?,
+        flag: String,
         sub_type: String?,
         approve: Boolean,
         reason: String?
