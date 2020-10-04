@@ -14,11 +14,9 @@ open class Msg {
     }
 
     fun text(text: String): Msg {
-        if (messageChain.isNotEmpty() && messageChain.last().type == "text") {
-            messageChain.last().dataMap["text"] += text
-        } else {
-            messageChain.add(OnebotBase.Message.newBuilder().setType("text").putAllData(mapOf("text" to text)).build())
-        }
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("text").putAllData(hashMapOf("text" to text)).build()
+        )
         return this
     }
 
