@@ -2,7 +2,6 @@ package net.lz1998.pbbot.bot
 
 import com.fasterxml.jackson.databind.util.LRUMap
 import com.google.protobuf.MessageLite
-import com.google.protobuf.MessageLiteOrBuilder
 import kotlinx.coroutines.*
 import net.lz1998.pbbot.alias.*
 import org.springframework.web.socket.BinaryMessage
@@ -10,7 +9,7 @@ import org.springframework.web.socket.WebSocketSession
 import java.util.*
 
 
-open class ApiSender {
+open class ApiSender(open val apiTimeout: Long) {
     open val echoFutureMap = LRUMap<String, CompletableDeferred<Frame>>(128, 1024)
 
     fun callApi(session: WebSocketSession, botId: Long, apiReq: MessageLite): MessageLite? {
@@ -143,7 +142,15 @@ open class ApiSender {
         val reqFrame = frameBuilder.build()
         val msg = BinaryMessage(reqFrame.toByteArray())
         session.sendMessage(msg)
-        val respFrame = runBlocking { futureResp.await() }
+        val respFrame = runBlocking {
+            try {
+                withTimeout(apiTimeout) {
+                    futureResp.await()
+                }
+            } catch (e: Exception) {
+                return@runBlocking null
+            }
+        } ?: return null
         return when (respFrame.frameType) {
             FrameType.SendPrivateMsgResp -> respFrame.sendPrivateMsgResp
             FrameType.SendGroupMsgResp -> respFrame.sendGroupMsgResp

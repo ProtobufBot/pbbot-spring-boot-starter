@@ -15,7 +15,7 @@ import org.springframework.web.socket.server.standard.ServletServerContainerFact
 @Component
 class BotBean {
     @Autowired
-    lateinit var miraiProperties: BotProperties
+    lateinit var botProperties: BotProperties
 
     @Autowired
     lateinit var eventProperties: EventProperties
@@ -35,7 +35,7 @@ class BotBean {
     @Bean
     @ConditionalOnMissingBean // 如果用户自定义apiSender则不创建
     fun createApiSender(): ApiSender {
-        return ApiSender()
+        return ApiSender(botProperties.apiTimeout)
     }
 
     @Bean
@@ -49,9 +49,9 @@ class BotBean {
     fun createWebSocketContainer(): ServletServerContainerFactoryBean? {
         val container = ServletServerContainerFactoryBean()
         // ws 传输数据的时候，数据过大有时候会接收不到，所以在此处设置bufferSize
-        container.maxTextMessageBufferSize = miraiProperties.maxTextMessageBufferSize
-        container.maxBinaryMessageBufferSize = miraiProperties.maxBinaryMessageBufferSize
-        container.maxSessionIdleTimeout = miraiProperties.maxSessionIdleTimeout
+        container.maxTextMessageBufferSize = botProperties.maxTextMessageBufferSize
+        container.maxBinaryMessageBufferSize = botProperties.maxBinaryMessageBufferSize
+        container.maxSessionIdleTimeout = botProperties.maxSessionIdleTimeout
         return container
     }
 }

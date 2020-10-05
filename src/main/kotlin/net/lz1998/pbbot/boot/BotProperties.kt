@@ -10,5 +10,6 @@ data class BotProperties(
     var maxTextMessageBufferSize: Int = 512000,
     var maxBinaryMessageBufferSize: Int = 512000,
     var maxSessionIdleTimeout: Long = 15 * 60000L,
+    var apiTimeout: Long = 60000L,
     var pluginList: List<Class<out BotPlugin>> = ArrayList()
 )
