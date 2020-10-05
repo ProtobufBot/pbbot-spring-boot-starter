@@ -1,6 +1,7 @@
 package net.lz1998.pbbot.bot
 
 import net.lz1998.pbbot.alias.*
+import net.lz1998.pbbot.utils.Msg
 import net.lz1998.pbbot.utils.toMessageList
 import org.springframework.web.socket.WebSocketSession
 
@@ -43,6 +44,22 @@ interface Bot {
     }
 
     /**
+     * 发送私聊消息
+     *
+     * @param user_id          对方 QQ 号
+     * @param msg              消息
+     * @param auto_escape      消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
+     * @return 结果
+     */
+    fun sendPrivateMsg(user_id: Long, msg: Msg, auto_escape: Boolean): SendPrivateMsgResp? {
+        val reqBuilder = SendPrivateMsgReq.newBuilder()
+        reqBuilder.userId = user_id
+        reqBuilder.addAllMessage(msg.build())
+        reqBuilder.autoEscape = auto_escape
+        return apiSender.sendPrivateMsg(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
      * 发送群消息
      *
      * @param group_id    群号
@@ -70,6 +87,22 @@ interface Bot {
         val reqBuilder = SendGroupMsgReq.newBuilder()
         reqBuilder.groupId = group_id
         reqBuilder.addAllMessage(messageChain)
+        reqBuilder.autoEscape = auto_escape
+        return apiSender.sendGroupMsg(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
+     * 发送群消息
+     *
+     * @param group_id         群号
+     * @param msg              消息
+     * @param auto_escape      消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
+     * @return 结果
+     */
+    fun sendGroupMsg(group_id: Long, msg: Msg, auto_escape: Boolean): SendGroupMsgResp? {
+        val reqBuilder = SendGroupMsgReq.newBuilder()
+        reqBuilder.groupId = group_id
+        reqBuilder.addAllMessage(msg.build())
         reqBuilder.autoEscape = auto_escape
         return apiSender.sendGroupMsg(botSession, selfId, reqBuilder.build())
     }

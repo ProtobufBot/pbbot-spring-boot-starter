@@ -12,7 +12,7 @@ import java.util.*
 open class ApiSender(open val apiTimeout: Long) {
     open val echoFutureMap = LRUMap<String, CompletableDeferred<Frame>>(128, 1024)
 
-    fun callApi(session: WebSocketSession, botId: Long, apiReq: MessageLite): MessageLite? {
+    private fun callApi(session: WebSocketSession, botId: Long, apiReq: MessageLite): MessageLite? {
         val echo = UUID.randomUUID().toString()
         val futureResp = CompletableDeferred<Frame>()
         echoFutureMap.put(echo, futureResp)
