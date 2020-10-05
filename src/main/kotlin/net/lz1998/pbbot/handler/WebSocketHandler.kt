@@ -2,8 +2,9 @@ package net.lz1998.pbbot.handler
 
 import net.lz1998.pbbot.alias.Frame
 import net.lz1998.pbbot.bot.BotFactory
-import net.lz1998.pbbot.bot.MiraiBot
 import net.lz1998.pbbot.boot.EventProperties
+import net.lz1998.pbbot.bot.BotContainer
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.socket.*
 import org.springframework.web.socket.handler.BinaryWebSocketHandler
 import java.util.concurrent.ArrayBlockingQueue
@@ -16,7 +17,8 @@ open class WebSocketHandler(
     open var botFactory: BotFactory,
     open var frameHandler: FrameHandler
 ) : BinaryWebSocketHandler() {
-    open val botMap = mutableMapOf<Long, MiraiBot>()
+    @Autowired
+    open lateinit var botContainer: BotContainer
 
     open val sessionMap = mutableMapOf<Long, WebSocketSession>()
 
@@ -36,7 +38,7 @@ open class WebSocketHandler(
         }
         sessionMap[xSelfId] = session
         println("$xSelfId connected")
-        botMap[xSelfId] = botFactory.createBot(xSelfId, session)
+        botContainer.bots[xSelfId] = botFactory.createBot(xSelfId, session)
     }
 
     override fun afterConnectionClosed(session: WebSocketSession, status: CloseStatus) {
@@ -46,7 +48,7 @@ open class WebSocketHandler(
         }
         sessionMap.remove(xSelfId, session)
         println("$xSelfId disconnected")
-        botMap.remove(xSelfId)
+        botContainer.bots.remove(xSelfId)
     }
 
 
