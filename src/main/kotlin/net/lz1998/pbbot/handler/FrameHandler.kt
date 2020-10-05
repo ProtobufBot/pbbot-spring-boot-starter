@@ -37,12 +37,13 @@ class FrameHandler {
                 frame.groupIncreaseNoticeEvent
             )
             FrameType.GroupBanNoticeEvent -> eventHandler.handleUnknown(null)
-            FrameType.FriendAddNoticeEvent -> eventHandler.handleUnknown(null)
+            FrameType.FriendAddNoticeEvent -> eventHandler.handleFriendAddNoticeEvent(bot, frame.friendAddNoticeEvent)
             FrameType.GroupRecallNoticeEvent -> eventHandler.handleUnknown(null)
             FrameType.FriendRecallNoticeEvent -> eventHandler.handleUnknown(null)
-            FrameType.FriendRequestEvent -> eventHandler.handleUnknown(null)
-            FrameType.GroupRequestEvent -> eventHandler.handleUnknown(null)
+            FrameType.FriendRequestEvent -> eventHandler.handleFriendRequestEvent(bot, frame.friendRequestEvent)
+            FrameType.GroupRequestEvent -> eventHandler.handleGroupRequestEvent(bot, frame.groupRequestEvent)
 
+            // 如果不是 event，说明是 api 调用的响应结果
             else -> apiSender.echoFutureMap[frame.echo]?.complete(frame)
         }
 
