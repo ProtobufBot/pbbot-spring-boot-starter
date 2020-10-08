@@ -19,7 +19,7 @@ interface Bot {
      * @param auto_escape 消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
      * @return 结果
      */
-    fun sendPrivateMsg(user_id: Long, message: String, auto_escape: Boolean): SendPrivateMsgResp? {
+    fun sendPrivateMsg(user_id: Long, message: String, auto_escape: Boolean = false): SendPrivateMsgResp? {
         val reqBuilder = SendPrivateMsgReq.newBuilder()
         reqBuilder.userId = user_id
         reqBuilder.addAllMessage(message.toMessageList())
@@ -35,7 +35,7 @@ interface Bot {
      * @param auto_escape      消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
      * @return 结果
      */
-    fun sendPrivateMsg(user_id: Long, messageChain: MessageChain, auto_escape: Boolean): SendPrivateMsgResp? {
+    fun sendPrivateMsg(user_id: Long, messageChain: MessageChain, auto_escape: Boolean = false): SendPrivateMsgResp? {
         val reqBuilder = SendPrivateMsgReq.newBuilder()
         reqBuilder.userId = user_id
         reqBuilder.addAllMessage(messageChain)
@@ -51,7 +51,7 @@ interface Bot {
      * @param auto_escape      消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
      * @return 结果
      */
-    fun sendPrivateMsg(user_id: Long, msg: Msg, auto_escape: Boolean): SendPrivateMsgResp? {
+    fun sendPrivateMsg(user_id: Long, msg: Msg, auto_escape: Boolean = false): SendPrivateMsgResp? {
         val reqBuilder = SendPrivateMsgReq.newBuilder()
         reqBuilder.userId = user_id
         reqBuilder.addAllMessage(msg.build())
@@ -67,7 +67,7 @@ interface Bot {
      * @param auto_escape 消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
      * @return 结果
      */
-    fun sendGroupMsg(group_id: Long, message: String, auto_escape: Boolean): SendGroupMsgResp? {
+    fun sendGroupMsg(group_id: Long, message: String, auto_escape: Boolean = false): SendGroupMsgResp? {
         val reqBuilder = SendGroupMsgReq.newBuilder()
         reqBuilder.groupId = group_id
         reqBuilder.addAllMessage(message.toMessageList())
@@ -83,7 +83,7 @@ interface Bot {
      * @param auto_escape      消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
      * @return 结果
      */
-    fun sendGroupMsg(group_id: Long, messageChain: MessageChain, auto_escape: Boolean): SendGroupMsgResp? {
+    fun sendGroupMsg(group_id: Long, messageChain: MessageChain, auto_escape: Boolean = false): SendGroupMsgResp? {
         val reqBuilder = SendGroupMsgReq.newBuilder()
         reqBuilder.groupId = group_id
         reqBuilder.addAllMessage(messageChain)
@@ -99,7 +99,7 @@ interface Bot {
      * @param auto_escape      消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
      * @return 结果
      */
-    fun sendGroupMsg(group_id: Long, msg: Msg, auto_escape: Boolean): SendGroupMsgResp? {
+    fun sendGroupMsg(group_id: Long, msg: Msg, auto_escape: Boolean = false): SendGroupMsgResp? {
         val reqBuilder = SendGroupMsgReq.newBuilder()
         reqBuilder.groupId = group_id
         reqBuilder.addAllMessage(msg.build())
