@@ -28,18 +28,12 @@ class FrameHandler {
             FrameType.GroupMessageEvent -> eventHandler.handleGroupMessageEvent(bot, frame.groupMessageEvent)
             FrameType.GroupUploadNoticeEvent -> eventHandler.handleUnknown(null)
             FrameType.GroupAdminNoticeEvent -> eventHandler.handleUnknown(null)
-            FrameType.GroupDecreaseNoticeEvent -> eventHandler.handleGroupDecreaseNoticeEvent(
-                bot,
-                frame.groupDecreaseNoticeEvent
-            )
-            FrameType.GroupIncreaseNoticeEvent -> eventHandler.handleGroupIncreaseNoticeEvent(
-                bot,
-                frame.groupIncreaseNoticeEvent
-            )
+            FrameType.GroupDecreaseNoticeEvent -> eventHandler.handleGroupDecreaseNoticeEvent(bot, frame.groupDecreaseNoticeEvent)
+            FrameType.GroupIncreaseNoticeEvent -> eventHandler.handleGroupIncreaseNoticeEvent(bot, frame.groupIncreaseNoticeEvent)
             FrameType.GroupBanNoticeEvent -> eventHandler.handleUnknown(null)
             FrameType.FriendAddNoticeEvent -> eventHandler.handleFriendAddNoticeEvent(bot, frame.friendAddNoticeEvent)
-            FrameType.GroupRecallNoticeEvent -> eventHandler.handleUnknown(null)
-            FrameType.FriendRecallNoticeEvent -> eventHandler.handleUnknown(null)
+            FrameType.GroupRecallNoticeEvent -> eventHandler.handleGroupRecallNoticeEvent(bot,frame.groupRecallNoticeEvent)
+            FrameType.FriendRecallNoticeEvent -> eventHandler.handleFriendRecallNoticeEvent(bot,frame.friendRecallNoticeEvent)
             FrameType.FriendRequestEvent -> eventHandler.handleFriendRequestEvent(bot, frame.friendRequestEvent)
             FrameType.GroupRequestEvent -> eventHandler.handleGroupRequestEvent(bot, frame.groupRequestEvent)
 

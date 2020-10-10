@@ -12,3 +12,5 @@ typealias GroupBanNoticeEvent = OnebotEvent.GroupBanNoticeEvent
 typealias FriendAddNoticeEvent = OnebotEvent.FriendAddNoticeEvent
 typealias FriendRequestEvent = OnebotEvent.FriendRequestEvent
 typealias GroupRequestEvent = OnebotEvent.GroupRequestEvent
+typealias GroupRecallNoticeEvent = OnebotEvent.GroupRecallNoticeEvent
+typealias FriendRecallNoticeEvent = OnebotEvent.FriendRecallNoticeEvent

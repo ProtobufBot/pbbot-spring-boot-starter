@@ -57,6 +57,22 @@ open class EventHandler {
         }
     }
 
+    open fun handleGroupRecallNoticeEvent(bot: Bot, event: GroupRecallNoticeEvent) {
+        botProperties.pluginList.forEach { pluginClass ->
+            if (getPlugin(pluginClass)?.onGroupRecallNotice(bot, event) == BotPlugin.MESSAGE_BLOCK) {
+                return
+            }
+        }
+    }
+
+    open fun handleFriendRecallNoticeEvent(bot: Bot, event: FriendRecallNoticeEvent) {
+        botProperties.pluginList.forEach { pluginClass ->
+            if (getPlugin(pluginClass)?.onFriendRecallNotice(bot, event) == BotPlugin.MESSAGE_BLOCK) {
+                return
+            }
+        }
+    }
+
     open fun handleFriendRequestEvent(bot: Bot, event: FriendRequestEvent) {
         botProperties.pluginList.forEach { pluginClass ->
             if (getPlugin(pluginClass)?.onFriendRequest(bot, event) == BotPlugin.MESSAGE_BLOCK) {

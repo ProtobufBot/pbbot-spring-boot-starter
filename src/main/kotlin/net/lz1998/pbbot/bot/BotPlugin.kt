@@ -94,6 +94,28 @@ abstract class BotPlugin {
     }
 
     /**
+     * 群撤回消息时调用此方法
+     *
+     * @param bot    机器人对象
+     * @param event 事件内容
+     * @return 是否继续处理下一个插件, MESSAGE_BLOCK表示不继续，MESSAGE_IGNORE表示继续
+     */
+    open fun onGroupRecallNotice(bot: Bot, event: GroupRecallNoticeEvent): Int {
+        return MESSAGE_IGNORE
+    }
+
+    /**
+     * 好友撤回消息时调用此方法
+     *
+     * @param bot    机器人对象
+     * @param event 事件内容
+     * @return 是否继续处理下一个插件, MESSAGE_BLOCK表示不继续，MESSAGE_IGNORE表示继续
+     */
+    open fun onFriendRecallNotice(bot: Bot, event: FriendRecallNoticeEvent): Int {
+        return MESSAGE_IGNORE
+    }
+
+    /**
      * 加好友请求时调用此方法
      *
      * @param bot    机器人对象

@@ -23,7 +23,7 @@ plugins {
 }
 
 group = "net.lz1998"
-version = "0.0.9"
+version = "0.0.10"
 
 repositories {
     mavenCentral()
@@ -31,8 +31,8 @@ repositories {
 
 dependencies {
     api("com.google.protobuf:protobuf-javalite:3.8.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8")
-    implementation("org.springframework.boot:spring-boot-starter-websocket")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8")
+    api("org.springframework.boot:spring-boot-starter-websocket")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
 
     api(kotlin("stdlib-jdk8"))

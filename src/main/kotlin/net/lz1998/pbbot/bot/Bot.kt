@@ -121,6 +121,18 @@ interface Bot {
     }
 
     /**
+     * 获取消息
+     *
+     * @param message_id 消息 ID
+     * @return 结果
+     */
+    fun getMsg(message_id: Int): GetMsgResp? {
+        val reqBuilder = GetMsgReq.newBuilder()
+        reqBuilder.messageId = message_id
+        return apiSender.getMsg(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
      * 群组踢人
      *
      * @param group_id           群号
