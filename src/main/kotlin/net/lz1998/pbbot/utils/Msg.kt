@@ -1,6 +1,7 @@
 package net.lz1998.pbbot.utils
 
 import net.lz1998.pbbot.alias.MessageChain
+import net.lz1998.pbbot.bot.Bot
 import onebot.OnebotBase
 
 open class Msg {
@@ -57,4 +58,13 @@ open class Msg {
         return messageChain
     }
 
+    fun sendToGroup(bot: Bot, groupId: Long): Msg {
+        bot.sendGroupMsg(groupId, this)
+        return this
+    }
+
+    fun sendToFriend(bot: Bot, userId: Long): Msg {
+        bot.sendPrivateMsg(userId, this)
+        return this
+    }
 }
