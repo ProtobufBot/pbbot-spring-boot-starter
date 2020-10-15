@@ -54,6 +54,14 @@ open class Msg {
         return this
     }
 
+    fun share(url: String, title: String, content: String, image: String): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("share")
+                .putAllData(mapOf("url" to url, "title" to title, "content" to content, "image" to image)).build()
+        )
+        return this
+    }
+
     fun build(): MessageChain {
         return messageChain
     }
