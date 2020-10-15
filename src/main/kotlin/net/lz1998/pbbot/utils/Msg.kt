@@ -26,6 +26,11 @@ open class Msg {
         return this
     }
 
+    fun record(url: String): Msg {
+        messageChain.add(OnebotBase.Message.newBuilder().setType("record").putAllData(mapOf("url" to url)).build())
+        return this
+    }
+
     fun flash(url: String): Msg {
         messageChain.add(
             OnebotBase.Message.newBuilder().setType("image").putAllData(mapOf("url" to url, "type" to "flash")).build()
