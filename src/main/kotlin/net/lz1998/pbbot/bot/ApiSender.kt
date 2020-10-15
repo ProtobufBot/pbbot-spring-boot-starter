@@ -21,120 +21,120 @@ open class ApiSender(open val apiTimeout: Long) {
         frameBuilder.botId = botId
         when (apiReq) {
             is SendPrivateMsgReq -> {
-                frameBuilder.sendPrivateMsgReq = apiReq;frameBuilder.frameType = FrameType.SendPrivateMsgReq
+                frameBuilder.sendPrivateMsgReq = apiReq;frameBuilder.frameType = FrameType.TSendPrivateMsgReq
             }
             is SendGroupMsgReq -> {
-                frameBuilder.sendGroupMsgReq = apiReq;frameBuilder.frameType = FrameType.SendGroupMsgReq
+                frameBuilder.sendGroupMsgReq = apiReq;frameBuilder.frameType = FrameType.TSendGroupMsgReq
             }
             is SendMsgReq -> {
-                frameBuilder.sendMsgReq = apiReq;frameBuilder.frameType = FrameType.SendMsgReq
+                frameBuilder.sendMsgReq = apiReq;frameBuilder.frameType = FrameType.TSendMsgReq
             }
             is DeleteMsgReq -> {
-                frameBuilder.deleteMsgReq = apiReq;frameBuilder.frameType = FrameType.DeleteMsgReq
+                frameBuilder.deleteMsgReq = apiReq;frameBuilder.frameType = FrameType.TDeleteMsgReq
             }
             is GetMsgReq -> {
-                frameBuilder.getMsgReq = apiReq;frameBuilder.frameType = FrameType.GetMsgReq
+                frameBuilder.getMsgReq = apiReq;frameBuilder.frameType = FrameType.TGetMsgReq
             }
             is GetForwardMsgReq -> {
-                frameBuilder.getForwardMsgReq = apiReq;frameBuilder.frameType = FrameType.GetForwardMsgReq
+                frameBuilder.getForwardMsgReq = apiReq;frameBuilder.frameType = FrameType.TGetForwardMsgReq
             }
             is SendLikeReq -> {
-                frameBuilder.sendLikeReq = apiReq;frameBuilder.frameType = FrameType.SendLikeReq
+                frameBuilder.sendLikeReq = apiReq;frameBuilder.frameType = FrameType.TSendLikeReq
             }
             is SetGroupKickReq -> {
-                frameBuilder.setGroupKickReq = apiReq;frameBuilder.frameType = FrameType.SetGroupKickReq
+                frameBuilder.setGroupKickReq = apiReq;frameBuilder.frameType = FrameType.TSetGroupKickReq
             }
             is SetGroupBanReq -> {
-                frameBuilder.setGroupBanReq = apiReq;frameBuilder.frameType = FrameType.SetGroupBanReq
+                frameBuilder.setGroupBanReq = apiReq;frameBuilder.frameType = FrameType.TSetGroupBanReq
             }
             is SetGroupAnonymousBanReq -> {
                 frameBuilder.setGroupAnonymousBanReq = apiReq;frameBuilder.frameType =
-                    FrameType.SetGroupAnonymousBanReq
+                    FrameType.TSetGroupAnonymousBanReq
             }
             is SetGroupWholeBanReq -> {
-                frameBuilder.setGroupWholeBanReq = apiReq;frameBuilder.frameType = FrameType.SetGroupWholeBanReq
+                frameBuilder.setGroupWholeBanReq = apiReq;frameBuilder.frameType = FrameType.TSetGroupWholeBanReq
             }
             is SetGroupAdminReq -> {
-                frameBuilder.setGroupAdminReq = apiReq;frameBuilder.frameType = FrameType.SetGroupAdminReq
+                frameBuilder.setGroupAdminReq = apiReq;frameBuilder.frameType = FrameType.TSetGroupAdminReq
             }
             is SetGroupAnonymousReq -> {
-                frameBuilder.setGroupAnonymousReq = apiReq;frameBuilder.frameType = FrameType.SetGroupAnonymousReq
+                frameBuilder.setGroupAnonymousReq = apiReq;frameBuilder.frameType = FrameType.TSetGroupAnonymousReq
             }
             is SetGroupCardReq -> {
-                frameBuilder.setGroupCardReq = apiReq;frameBuilder.frameType = FrameType.SetGroupCardReq
+                frameBuilder.setGroupCardReq = apiReq;frameBuilder.frameType = FrameType.TSetGroupCardReq
             }
             is SetGroupNameReq -> {
-                frameBuilder.setGroupNameReq = apiReq;frameBuilder.frameType = FrameType.SetGroupNameReq
+                frameBuilder.setGroupNameReq = apiReq;frameBuilder.frameType = FrameType.TSetGroupNameReq
             }
             is SetGroupLeaveReq -> {
-                frameBuilder.setGroupLeaveReq = apiReq;frameBuilder.frameType = FrameType.SetGroupLeaveReq
+                frameBuilder.setGroupLeaveReq = apiReq;frameBuilder.frameType = FrameType.TSetGroupLeaveReq
             }
             is SetGroupSpecialTitleReq -> {
                 frameBuilder.setGroupSpecialTitleReq = apiReq;frameBuilder.frameType =
-                    FrameType.SetGroupSpecialTitleReq
+                    FrameType.TSetGroupSpecialTitleReq
             }
             is SetFriendAddRequestReq -> {
-                frameBuilder.setFriendAddRequestReq = apiReq;frameBuilder.frameType = FrameType.SetFriendAddRequestReq
+                frameBuilder.setFriendAddRequestReq = apiReq;frameBuilder.frameType = FrameType.TSetFriendAddRequestReq
             }
             is SetGroupAddRequestReq -> {
-                frameBuilder.setGroupAddRequestReq = apiReq;frameBuilder.frameType = FrameType.SetGroupAddRequestReq
+                frameBuilder.setGroupAddRequestReq = apiReq;frameBuilder.frameType = FrameType.TSetGroupAddRequestReq
             }
             is GetLoginInfoReq -> {
-                frameBuilder.getLoginInfoReq = apiReq;frameBuilder.frameType = FrameType.GetLoginInfoReq
+                frameBuilder.getLoginInfoReq = apiReq;frameBuilder.frameType = FrameType.TGetLoginInfoReq
             }
             is GetStrangerInfoReq -> {
-                frameBuilder.getStrangerInfoReq = apiReq;frameBuilder.frameType = FrameType.GetStrangerInfoReq
+                frameBuilder.getStrangerInfoReq = apiReq;frameBuilder.frameType = FrameType.TGetStrangerInfoReq
             }
             is GetFriendListReq -> {
-                frameBuilder.getFriendListReq = apiReq;frameBuilder.frameType = FrameType.GetFriendListReq
+                frameBuilder.getFriendListReq = apiReq;frameBuilder.frameType = FrameType.TGetFriendListReq
             }
             is GetGroupInfoReq -> {
-                frameBuilder.getGroupInfoReq = apiReq;frameBuilder.frameType = FrameType.GetGroupInfoReq
+                frameBuilder.getGroupInfoReq = apiReq;frameBuilder.frameType = FrameType.TGetGroupInfoReq
             }
             is GetGroupListReq -> {
-                frameBuilder.getGroupListReq = apiReq;frameBuilder.frameType = FrameType.GetGroupListReq
+                frameBuilder.getGroupListReq = apiReq;frameBuilder.frameType = FrameType.TGetGroupListReq
             }
             is GetGroupMemberInfoReq -> {
-                frameBuilder.getGroupMemberInfoReq = apiReq;frameBuilder.frameType = FrameType.GetGroupMemberInfoReq
+                frameBuilder.getGroupMemberInfoReq = apiReq;frameBuilder.frameType = FrameType.TGetGroupMemberInfoReq
             }
             is GetGroupMemberListReq -> {
-                frameBuilder.getGroupMemberListReq = apiReq;frameBuilder.frameType = FrameType.GetGroupMemberListReq
+                frameBuilder.getGroupMemberListReq = apiReq;frameBuilder.frameType = FrameType.TGetGroupMemberListReq
             }
             is GetGroupHonorInfoReq -> {
-                frameBuilder.getGroupHonorInfoReq = apiReq;frameBuilder.frameType = FrameType.GetGroupHonorInfoReq
+                frameBuilder.getGroupHonorInfoReq = apiReq;frameBuilder.frameType = FrameType.TGetGroupHonorInfoReq
             }
             is GetCookiesReq -> {
-                frameBuilder.getCookiesReq = apiReq;frameBuilder.frameType = FrameType.GetCookiesReq
+                frameBuilder.getCookiesReq = apiReq;frameBuilder.frameType = FrameType.TGetCookiesReq
             }
             is GetCsrfTokenReq -> {
-                frameBuilder.getCsrfTokenReq = apiReq;frameBuilder.frameType = FrameType.GetCsrfTokenReq
+                frameBuilder.getCsrfTokenReq = apiReq;frameBuilder.frameType = FrameType.TGetCsrfTokenReq
             }
             is GetCredentialsReq -> {
-                frameBuilder.getCredentialsReq = apiReq;frameBuilder.frameType = FrameType.GetCredentialsReq
+                frameBuilder.getCredentialsReq = apiReq;frameBuilder.frameType = FrameType.TGetCredentialsReq
             }
             is GetRecordReq -> {
-                frameBuilder.getRecordReq = apiReq;frameBuilder.frameType = FrameType.GetRecordReq
+                frameBuilder.getRecordReq = apiReq;frameBuilder.frameType = FrameType.TGetRecordReq
             }
             is GetImageReq -> {
-                frameBuilder.getImageReq = apiReq;frameBuilder.frameType = FrameType.GetImageReq
+                frameBuilder.getImageReq = apiReq;frameBuilder.frameType = FrameType.TGetImageReq
             }
             is CanSendImageReq -> {
-                frameBuilder.canSendImageReq = apiReq;frameBuilder.frameType = FrameType.CanSendImageReq
+                frameBuilder.canSendImageReq = apiReq;frameBuilder.frameType = FrameType.TCanSendImageReq
             }
             is CanSendRecordReq -> {
-                frameBuilder.canSendRecordReq = apiReq;frameBuilder.frameType = FrameType.CanSendRecordReq
+                frameBuilder.canSendRecordReq = apiReq;frameBuilder.frameType = FrameType.TCanSendRecordReq
             }
             is GetStatusReq -> {
-                frameBuilder.getStatusReq = apiReq;frameBuilder.frameType = FrameType.GetStatusReq
+                frameBuilder.getStatusReq = apiReq;frameBuilder.frameType = FrameType.TGetStatusReq
             }
             is GetVersionInfoReq -> {
-                frameBuilder.getVersionInfoReq = apiReq;frameBuilder.frameType = FrameType.GetVersionInfoReq
+                frameBuilder.getVersionInfoReq = apiReq;frameBuilder.frameType = FrameType.TGetVersionInfoReq
             }
             is SetRestartReq -> {
-                frameBuilder.setRestartReq = apiReq;frameBuilder.frameType = FrameType.SetRestartReq
+                frameBuilder.setRestartReq = apiReq;frameBuilder.frameType = FrameType.TSetRestartReq
             }
             is CleanCacheReq -> {
-                frameBuilder.cleanCacheReq = apiReq;frameBuilder.frameType = FrameType.CleanCacheReq
+                frameBuilder.cleanCacheReq = apiReq;frameBuilder.frameType = FrameType.TCleanCacheReq
             }
             else -> return null
         }
@@ -152,44 +152,44 @@ open class ApiSender(open val apiTimeout: Long) {
             }
         } ?: return null
         return when (respFrame.frameType) {
-            FrameType.SendPrivateMsgResp -> respFrame.sendPrivateMsgResp
-            FrameType.SendGroupMsgResp -> respFrame.sendGroupMsgResp
-            FrameType.SendMsgResp -> respFrame.sendMsgResp
-            FrameType.DeleteMsgResp -> respFrame.deleteMsgResp
-            FrameType.GetMsgResp -> respFrame.getMsgResp
-            FrameType.GetForwardMsgResp -> respFrame.getForwardMsgResp
-            FrameType.SendLikeResp -> respFrame.sendLikeResp
-            FrameType.SetGroupKickResp -> respFrame.setGroupKickResp
-            FrameType.SetGroupBanResp -> respFrame.setGroupBanResp
-            FrameType.SetGroupAnonymousResp -> respFrame.setGroupAnonymousResp
-            FrameType.SetGroupWholeBanResp -> respFrame.setGroupWholeBanResp
-            FrameType.SetGroupAdminResp -> respFrame.setGroupAdminResp
-            FrameType.SetGroupAnonymousBanResp -> respFrame.setGroupAnonymousBanResp
-            FrameType.SetGroupCardResp -> respFrame.setGroupCardResp
-            FrameType.SetGroupNameResp -> respFrame.setGroupNameResp
-            FrameType.SetGroupLeaveResp -> respFrame.setGroupLeaveResp
-            FrameType.SetGroupSpecialTitleResp -> respFrame.setGroupSpecialTitleResp
-            FrameType.SetFriendAddRequestResp -> respFrame.setFriendAddRequestResp
-            FrameType.SetGroupAddRequestResp -> respFrame.setGroupAddRequestResp
-            FrameType.GetLoginInfoResp -> respFrame.getLoginInfoResp
-            FrameType.GetStrangerInfoResp -> respFrame.getStrangerInfoResp
-            FrameType.GetFriendListResp -> respFrame.getFriendListResp
-            FrameType.GetGroupInfoResp -> respFrame.getGroupInfoResp
-            FrameType.GetGroupListResp -> respFrame.getGroupListResp
-            FrameType.GetGroupMemberInfoResp -> respFrame.getGroupMemberInfoResp
-            FrameType.GetGroupMemberListResp -> respFrame.getGroupMemberListResp
-            FrameType.GetGroupHonorInfoResp -> respFrame.getGroupHonorInfoResp
-            FrameType.GetCookiesResp -> respFrame.getCookiesResp
-            FrameType.GetCsrfTokenResp -> respFrame.getCsrfTokenResp
-            FrameType.GetCredentialsResp -> respFrame.getCredentialsResp
-            FrameType.GetRecordResp -> respFrame.getRecordResp
-            FrameType.GetImageResp -> respFrame.getImageResp
-            FrameType.CanSendImageResp -> respFrame.canSendImageResp
-            FrameType.CanSendRecordResp -> respFrame.canSendRecordResp
-            FrameType.GetStatusResp -> respFrame.getStatusResp
-            FrameType.GetVersionInfoResp -> respFrame.getVersionInfoResp
-            FrameType.SetRestartResp -> respFrame.setRestartResp
-            FrameType.CleanCacheResp -> respFrame.cleanCacheResp
+            FrameType.TSendPrivateMsgResp -> respFrame.sendPrivateMsgResp
+            FrameType.TSendGroupMsgResp -> respFrame.sendGroupMsgResp
+            FrameType.TSendMsgResp -> respFrame.sendMsgResp
+            FrameType.TDeleteMsgResp -> respFrame.deleteMsgResp
+            FrameType.TGetMsgResp -> respFrame.getMsgResp
+            FrameType.TGetForwardMsgResp -> respFrame.getForwardMsgResp
+            FrameType.TSendLikeResp -> respFrame.sendLikeResp
+            FrameType.TSetGroupKickResp -> respFrame.setGroupKickResp
+            FrameType.TSetGroupBanResp -> respFrame.setGroupBanResp
+            FrameType.TSetGroupAnonymousResp -> respFrame.setGroupAnonymousResp
+            FrameType.TSetGroupWholeBanResp -> respFrame.setGroupWholeBanResp
+            FrameType.TSetGroupAdminResp -> respFrame.setGroupAdminResp
+            FrameType.TSetGroupAnonymousBanResp -> respFrame.setGroupAnonymousBanResp
+            FrameType.TSetGroupCardResp -> respFrame.setGroupCardResp
+            FrameType.TSetGroupNameResp -> respFrame.setGroupNameResp
+            FrameType.TSetGroupLeaveResp -> respFrame.setGroupLeaveResp
+            FrameType.TSetGroupSpecialTitleResp -> respFrame.setGroupSpecialTitleResp
+            FrameType.TSetFriendAddRequestResp -> respFrame.setFriendAddRequestResp
+            FrameType.TSetGroupAddRequestResp -> respFrame.setGroupAddRequestResp
+            FrameType.TGetLoginInfoResp -> respFrame.getLoginInfoResp
+            FrameType.TGetStrangerInfoResp -> respFrame.getStrangerInfoResp
+            FrameType.TGetFriendListResp -> respFrame.getFriendListResp
+            FrameType.TGetGroupInfoResp -> respFrame.getGroupInfoResp
+            FrameType.TGetGroupListResp -> respFrame.getGroupListResp
+            FrameType.TGetGroupMemberInfoResp -> respFrame.getGroupMemberInfoResp
+            FrameType.TGetGroupMemberListResp -> respFrame.getGroupMemberListResp
+            FrameType.TGetGroupHonorInfoResp -> respFrame.getGroupHonorInfoResp
+            FrameType.TGetCookiesResp -> respFrame.getCookiesResp
+            FrameType.TGetCsrfTokenResp -> respFrame.getCsrfTokenResp
+            FrameType.TGetCredentialsResp -> respFrame.getCredentialsResp
+            FrameType.TGetRecordResp -> respFrame.getRecordResp
+            FrameType.TGetImageResp -> respFrame.getImageResp
+            FrameType.TCanSendImageResp -> respFrame.canSendImageResp
+            FrameType.TCanSendRecordResp -> respFrame.canSendRecordResp
+            FrameType.TGetStatusResp -> respFrame.getStatusResp
+            FrameType.TGetVersionInfoResp -> respFrame.getVersionInfoResp
+            FrameType.TSetRestartResp -> respFrame.setRestartResp
+            FrameType.TCleanCacheResp -> respFrame.cleanCacheResp
             else -> null
         }
     }

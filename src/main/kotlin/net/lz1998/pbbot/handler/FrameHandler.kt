@@ -24,18 +24,18 @@ class FrameHandler {
     fun handleFrame(frame: Frame) {
         val bot: Bot = botContainer.bots[frame.botId] ?: return
         when (frame.frameType) {
-            FrameType.PrivateMessageEvent -> eventHandler.handlePrivateMessageEvent(bot, frame.privateMessageEvent)
-            FrameType.GroupMessageEvent -> eventHandler.handleGroupMessageEvent(bot, frame.groupMessageEvent)
-            FrameType.GroupUploadNoticeEvent -> eventHandler.handleUnknown(null)
-            FrameType.GroupAdminNoticeEvent -> eventHandler.handleUnknown(null)
-            FrameType.GroupDecreaseNoticeEvent -> eventHandler.handleGroupDecreaseNoticeEvent(bot, frame.groupDecreaseNoticeEvent)
-            FrameType.GroupIncreaseNoticeEvent -> eventHandler.handleGroupIncreaseNoticeEvent(bot, frame.groupIncreaseNoticeEvent)
-            FrameType.GroupBanNoticeEvent -> eventHandler.handleUnknown(null)
-            FrameType.FriendAddNoticeEvent -> eventHandler.handleFriendAddNoticeEvent(bot, frame.friendAddNoticeEvent)
-            FrameType.GroupRecallNoticeEvent -> eventHandler.handleGroupRecallNoticeEvent(bot,frame.groupRecallNoticeEvent)
-            FrameType.FriendRecallNoticeEvent -> eventHandler.handleFriendRecallNoticeEvent(bot,frame.friendRecallNoticeEvent)
-            FrameType.FriendRequestEvent -> eventHandler.handleFriendRequestEvent(bot, frame.friendRequestEvent)
-            FrameType.GroupRequestEvent -> eventHandler.handleGroupRequestEvent(bot, frame.groupRequestEvent)
+            FrameType.TPrivateMessageEvent -> eventHandler.handlePrivateMessageEvent(bot, frame.privateMessageEvent)
+            FrameType.TGroupMessageEvent -> eventHandler.handleGroupMessageEvent(bot, frame.groupMessageEvent)
+            FrameType.TGroupUploadNoticeEvent -> eventHandler.handleUnknown(null)
+            FrameType.TGroupAdminNoticeEvent -> eventHandler.handleUnknown(null)
+            FrameType.TGroupDecreaseNoticeEvent -> eventHandler.handleGroupDecreaseNoticeEvent(bot, frame.groupDecreaseNoticeEvent)
+            FrameType.TGroupIncreaseNoticeEvent -> eventHandler.handleGroupIncreaseNoticeEvent(bot, frame.groupIncreaseNoticeEvent)
+            FrameType.TGroupBanNoticeEvent -> eventHandler.handleUnknown(null)
+            FrameType.TFriendAddNoticeEvent -> eventHandler.handleFriendAddNoticeEvent(bot, frame.friendAddNoticeEvent)
+            FrameType.TGroupRecallNoticeEvent -> eventHandler.handleGroupRecallNoticeEvent(bot,frame.groupRecallNoticeEvent)
+            FrameType.TFriendRecallNoticeEvent -> eventHandler.handleFriendRecallNoticeEvent(bot,frame.friendRecallNoticeEvent)
+            FrameType.TFriendRequestEvent -> eventHandler.handleFriendRequestEvent(bot, frame.friendRequestEvent)
+            FrameType.TGroupRequestEvent -> eventHandler.handleGroupRequestEvent(bot, frame.groupRequestEvent)
 
             // 如果不是 event，说明是 api 调用的响应结果
             else -> apiSender.echoFutureMap[frame.echo]?.complete(frame)
