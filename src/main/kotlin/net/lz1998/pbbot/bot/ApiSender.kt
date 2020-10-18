@@ -248,13 +248,7 @@ open class ApiSender(open val apiTimeout: Long) {
     fun setFriendAddRequest(session: WebSocketSession, botId: Long, apiReq: SetFriendAddRequestReq) =
         callApi(session, botId, apiReq) as SetFriendAddRequestResp?
 
-    fun setFriendAdd(session: WebSocketSession, botId: Long, apiReq: SetFriendAddRequestReq) =
-        callApi(session, botId, apiReq) as SetFriendAddRequestResp?
-
     fun setGroupAddRequest(session: WebSocketSession, botId: Long, apiReq: SetGroupAddRequestReq) =
-        callApi(session, botId, apiReq) as SetGroupAddRequestResp?
-
-    fun setGroupAdd(session: WebSocketSession, botId: Long, apiReq: SetGroupAddRequestReq) =
         callApi(session, botId, apiReq) as SetGroupAddRequestResp?
 
     fun getLoginInfo(session: WebSocketSession, botId: Long, apiReq: GetLoginInfoReq) =

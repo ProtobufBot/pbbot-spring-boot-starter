@@ -280,6 +280,18 @@ interface Bot {
     }
 
     /**
+     * 获取陌生人信息
+     *
+     * @param user_id   QQ号
+     * @return 结果
+     */
+    fun getStrangerInfo(user_id: Long): GetStrangerInfoResp? {
+        val reqBuilder = GetStrangerInfoReq.newBuilder()
+        reqBuilder.userId = user_id
+        return apiSender.getStrangerInfo(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
      * 获取好友列表
      *
      * @return 结果
