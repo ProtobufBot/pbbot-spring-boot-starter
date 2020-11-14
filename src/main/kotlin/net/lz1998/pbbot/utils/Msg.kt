@@ -67,6 +67,30 @@ open class Msg {
         return this
     }
 
+    fun lightApp(content: String): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("light_app")
+                .putAllData(mapOf("content" to content)).build()
+        )
+        return this
+    }
+
+    fun xml(id: Int, content: String): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("service")
+                .putAllData(mapOf("sub_type" to "xml", "id" to id.toString(), "content" to content)).build()
+        )
+        return this
+    }
+
+    fun json(id: Int, content: String): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("service")
+                .putAllData(mapOf("sub_type" to "json", "id" to id.toString(), "content" to content)).build()
+        )
+        return this
+    }
+
     fun build(): MessageChain {
         return messageChain
     }
