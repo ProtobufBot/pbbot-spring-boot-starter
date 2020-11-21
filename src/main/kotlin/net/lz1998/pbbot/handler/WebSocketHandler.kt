@@ -20,8 +20,6 @@ open class WebSocketHandler(
     @Autowired
     open lateinit var botContainer: BotContainer
 
-    open val sessionMap = mutableMapOf<Long, WebSocketSession>()
-
     open var executor: ExecutorService = ThreadPoolExecutor(
         eventProperties.corePoolSize,
         eventProperties.maxPoolSize,
@@ -30,29 +28,37 @@ open class WebSocketHandler(
         ArrayBlockingQueue(eventProperties.workQueueSize)
     );
 
+    @Synchronized
     override fun afterConnectionEstablished(session: WebSocketSession) {
         val xSelfId = session.handshakeHeaders["x-self-id"]?.get(0)?.toLong() ?: 0L
         if (xSelfId == 0L) {
             session.close()
             return
         }
-        sessionMap[xSelfId] = session
-        println("$xSelfId connected")
         botContainer.bots[xSelfId] = botFactory.createBot(xSelfId, session)
+        println("$xSelfId connected")
     }
 
+    @Synchronized
     override fun afterConnectionClosed(session: WebSocketSession, status: CloseStatus) {
         val xSelfId = session.handshakeHeaders["x-self-id"]?.get(0)?.toLong() ?: 0L
         if (xSelfId == 0L) {
             return
         }
-        sessionMap.remove(xSelfId, session)
-        println("$xSelfId disconnected")
         botContainer.bots.remove(xSelfId)
+        println("$xSelfId disconnected")
     }
 
 
     override fun handleBinaryMessage(session: WebSocketSession, message: BinaryMessage) {
+        val xSelfId = session.handshakeHeaders["x-self-id"]?.get(0)?.toLong() ?: 0L
+        if (xSelfId == 0L) {
+            return
+        }
+        if (!botContainer.bots.containsKey(xSelfId)) {
+            botContainer.bots[xSelfId] = botFactory.createBot(xSelfId, session)
+        }
+
         val frame = Frame.parseFrom(message.payload)
         session.sendMessage(PingMessage())
         executor.execute {
