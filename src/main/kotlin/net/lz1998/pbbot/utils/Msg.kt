@@ -91,6 +91,14 @@ open class Msg {
         return this
     }
 
+    fun reply(messageId: Int): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("reply")
+                .putAllData(mapOf("message_id" to messageId.toString())).build()
+        )
+        return this
+    }
+
     fun build(): MessageChain {
         return messageChain
     }
