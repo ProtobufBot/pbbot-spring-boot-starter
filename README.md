@@ -14,9 +14,10 @@
     <dependency>
         <groupId>net.lz1998</groupId>
         <artifactId>pbbot-spring-boot-starter</artifactId>
-        <version>0.0.18</version>
+        <version>0.0.19</version>
     </dependency>
 ```
+最新版：[![maven](https://img.shields.io/maven-central/v/net.lz1998/pbbot-spring-boot-starter)](https://search.maven.org/artifact/net.lz1998/pbbot-spring-boot-starter)
 
 - HelloPlugin
 ```java
