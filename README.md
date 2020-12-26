@@ -1,6 +1,12 @@
 # Pbbot-Spring-Boot-Starter
 
-这是一个spring boot starter，可以用于快速开发对应于 [Spring-Mirai-Client](https://github.com/ProtobufBot/Spring-Mirai-Client) 的消息处理中心
+这是一个spring boot starter，可以用于快速开发对应于 [Go-Mirai-Client](https://github.com/protobufbot/go-Mirai-Client) 或 [Spring-Mirai-Client](https://github.com/ProtobufBot/Spring-Mirai-Client) 的消息处理中心。
+
+仅用于编写业务逻辑，不涉及登陆等功能，建议配合[Go-Mirai-Client](https://github.com/protobufbot/Go-Mirai-Client)使用，下载地址：[Go-Mirai-Client-Release](https://github.com/ProtobufBot/Go-Mirai-Client/releases)
+
+文档：https://blog.lz1998.net/blogs/bot/2020/pbbot-doc/
+
+例子：https://github.com/ProtobufBot/Spring-Mirai-Server
 
 ## 使用方法
 - pom.xml
@@ -8,7 +14,7 @@
     <dependency>
         <groupId>net.lz1998</groupId>
         <artifactId>pbbot-spring-boot-starter</artifactId>
-        <version>0.0.9</version>
+        <version>0.0.18</version>
     </dependency>
 ```
 
