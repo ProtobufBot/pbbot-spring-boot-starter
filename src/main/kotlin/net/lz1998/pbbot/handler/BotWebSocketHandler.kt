@@ -12,6 +12,9 @@ import java.util.concurrent.ExecutorService
 @Component
 class BotWebSocketHandler : BinaryWebSocketHandler() {
     @Autowired
+    lateinit var sessionInterceptor: BotSessionInterceptor
+
+    @Autowired
     lateinit var botFactory: BotFactory
 
     @Autowired
@@ -26,6 +29,9 @@ class BotWebSocketHandler : BinaryWebSocketHandler() {
 
     @Synchronized
     override fun afterConnectionEstablished(session: WebSocketSession) {
+        if (!sessionInterceptor.checkSession(session)) {
+            return
+        }
         val xSelfId = session.handshakeHeaders["x-self-id"]?.get(0)?.toLong() ?: 0L
         if (xSelfId == 0L) {
             session.close()
