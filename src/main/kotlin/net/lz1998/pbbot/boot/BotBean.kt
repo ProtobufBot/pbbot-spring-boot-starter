@@ -1,15 +1,14 @@
 package net.lz1998.pbbot.boot
 
-import net.lz1998.pbbot.bot.ApiSender
-import net.lz1998.pbbot.bot.BotFactory
-import net.lz1998.pbbot.handler.EventHandler
-import net.lz1998.pbbot.handler.FrameHandler
-import net.lz1998.pbbot.handler.WebSocketHandler
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component
 import org.springframework.web.socket.server.standard.ServletServerContainerFactoryBean
+import java.util.concurrent.ArrayBlockingQueue
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.ThreadPoolExecutor
+import java.util.concurrent.TimeUnit
 
 
 @Component
@@ -20,29 +19,18 @@ class BotBean {
     @Autowired
     lateinit var eventProperties: EventProperties
 
-    @Autowired
-    lateinit var botFactory: BotFactory
-
-    @Autowired
-    lateinit var frameHandler: FrameHandler
-
     @Bean
-    @ConditionalOnMissingBean // 如果用户自定义eventHandler则不创建
-    fun createEventHandler(): EventHandler {
-        return EventHandler()
+    @ConditionalOnMissingBean
+    fun createExecutor(): ExecutorService {
+        return ThreadPoolExecutor(
+            eventProperties.corePoolSize,
+            eventProperties.maxPoolSize,
+            eventProperties.keepAliveTime,
+            TimeUnit.MILLISECONDS,
+            ArrayBlockingQueue(eventProperties.workQueueSize)
+        )
     }
 
-    @Bean
-    @ConditionalOnMissingBean // 如果用户自定义apiSender则不创建
-    fun createApiSender(): ApiSender {
-        return ApiSender(botProperties.apiTimeout)
-    }
-
-    @Bean
-    @ConditionalOnMissingBean // 如果用户自定义webSocketHandler则不创建
-    fun createWebSocketHandler(): WebSocketHandler {
-        return WebSocketHandler(eventProperties, botFactory, frameHandler)
-    }
 
     @Bean
     @ConditionalOnMissingBean

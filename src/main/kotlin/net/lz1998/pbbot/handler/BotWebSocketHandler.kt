@@ -2,31 +2,27 @@ package net.lz1998.pbbot.handler
 
 import net.lz1998.pbbot.alias.Frame
 import net.lz1998.pbbot.bot.BotFactory
-import net.lz1998.pbbot.boot.EventProperties
 import net.lz1998.pbbot.bot.BotContainer
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 import org.springframework.web.socket.*
 import org.springframework.web.socket.handler.BinaryWebSocketHandler
-import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.ExecutorService
-import java.util.concurrent.ThreadPoolExecutor
-import java.util.concurrent.TimeUnit
 
-open class WebSocketHandler(
-    eventProperties: EventProperties,
-    open var botFactory: BotFactory,
-    open var frameHandler: FrameHandler
-) : BinaryWebSocketHandler() {
+@Component
+class BotWebSocketHandler : BinaryWebSocketHandler() {
     @Autowired
-    open lateinit var botContainer: BotContainer
+    lateinit var botFactory: BotFactory
 
-    open var executor: ExecutorService = ThreadPoolExecutor(
-        eventProperties.corePoolSize,
-        eventProperties.maxPoolSize,
-        eventProperties.keepAliveTime,
-        TimeUnit.MILLISECONDS,
-        ArrayBlockingQueue(eventProperties.workQueueSize)
-    );
+    @Autowired
+    lateinit var frameHandler: FrameHandler
+
+    @Autowired
+    lateinit var botContainer: BotContainer
+
+    @Autowired
+    lateinit var executor: ExecutorService
+
 
     @Synchronized
     override fun afterConnectionEstablished(session: WebSocketSession) {

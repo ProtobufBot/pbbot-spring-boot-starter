@@ -4,13 +4,22 @@ import com.fasterxml.jackson.databind.util.LRUMap
 import com.google.protobuf.MessageLite
 import kotlinx.coroutines.*
 import net.lz1998.pbbot.alias.*
+import net.lz1998.pbbot.boot.BotProperties
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 import org.springframework.web.socket.BinaryMessage
 import org.springframework.web.socket.WebSocketSession
 import java.util.*
 
 
-open class ApiSender(open val apiTimeout: Long) {
-    open val echoFutureMap = LRUMap<String, CompletableDeferred<Frame>>(128, 1024)
+@Component
+class ApiSender {
+    @Autowired
+    lateinit var botProperties: BotProperties
+    val apiTimeout: Long
+        get() = botProperties.apiTimeout
+
+    val echoFutureMap = LRUMap<String, CompletableDeferred<Frame>>(128, 1024)
 
     private fun callApi(session: WebSocketSession, botId: Long, apiReq: MessageLite): MessageLite? {
         val echo = UUID.randomUUID().toString()
