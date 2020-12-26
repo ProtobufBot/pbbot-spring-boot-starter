@@ -99,6 +99,14 @@ open class Msg {
         return this
     }
 
+    fun sleep(time: Long): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("sleep")
+                .putAllData(mapOf("time" to time.toString())).build()
+        )
+        return this
+    }
+
     fun build(): MessageChain {
         return messageChain
     }
