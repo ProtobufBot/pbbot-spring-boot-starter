@@ -1,5 +1,7 @@
 # Pbbot-Spring-Boot-Starter
 
+[![QQ群](https://img.shields.io/static/v1?label=QQ%E7%BE%A4&message=335783090&color=blue)](https://jq.qq.com/?_wv=1027&k=B7Of3GMZ)
+
 这是一个spring boot starter，可以用于快速开发对应于 [Go-Mirai-Client](https://github.com/protobufbot/go-Mirai-Client) 或 [Spring-Mirai-Client](https://github.com/ProtobufBot/Spring-Mirai-Client) 的消息处理中心。
 
 仅用于编写业务逻辑，不涉及登陆等功能，建议配合[Go-Mirai-Client](https://github.com/protobufbot/Go-Mirai-Client)使用，下载地址：[Go-Mirai-Client-Release](https://github.com/ProtobufBot/Go-Mirai-Client/releases)
