@@ -107,6 +107,14 @@ open class Msg {
         return this
     }
 
+    fun tts(text: String): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("tts")
+                .putAllData(mapOf("text" to text)).build()
+        )
+        return this
+    }
+
     fun build(): MessageChain {
         return messageChain
     }

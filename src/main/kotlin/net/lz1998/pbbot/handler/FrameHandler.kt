@@ -26,7 +26,7 @@ class FrameHandler {
         when (frame.frameType) {
             FrameType.TPrivateMessageEvent -> eventHandler.handlePrivateMessageEvent(bot, frame.privateMessageEvent)
             FrameType.TGroupMessageEvent -> eventHandler.handleGroupMessageEvent(bot, frame.groupMessageEvent)
-            FrameType.TGroupUploadNoticeEvent -> eventHandler.handleUnknown(null)
+            FrameType.TGroupUploadNoticeEvent -> eventHandler.handleGroupUploadNoticeEvent(bot, frame.groupUploadNoticeEvent)
             FrameType.TGroupAdminNoticeEvent -> eventHandler.handleUnknown(null)
             FrameType.TGroupDecreaseNoticeEvent -> eventHandler.handleGroupDecreaseNoticeEvent(bot, frame.groupDecreaseNoticeEvent)
             FrameType.TGroupIncreaseNoticeEvent -> eventHandler.handleGroupIncreaseNoticeEvent(bot, frame.groupIncreaseNoticeEvent)

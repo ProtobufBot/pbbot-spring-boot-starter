@@ -35,6 +35,14 @@ class EventHandler {
         }
     }
 
+    fun handleGroupUploadNoticeEvent(bot: Bot, event: GroupUploadNoticeEvent) {
+        botProperties.pluginList.forEach { pluginClass ->
+            if (getPlugin(pluginClass)?.onGroupUploadNotice(bot, event) == BotPlugin.MESSAGE_BLOCK) {
+                return
+            }
+        }
+    }
+
     fun handleGroupDecreaseNoticeEvent(bot: Bot, event: GroupDecreaseNoticeEvent) {
         botProperties.pluginList.forEach { pluginClass ->
             if (getPlugin(pluginClass)?.onGroupDecreaseNotice(bot, event) == BotPlugin.MESSAGE_BLOCK) {
