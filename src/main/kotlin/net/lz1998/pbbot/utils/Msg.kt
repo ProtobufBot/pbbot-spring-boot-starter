@@ -115,6 +115,14 @@ open class Msg {
         return this
     }
 
+    fun video(url: String, cover: String): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("video")
+                .putAllData(mapOf("url" to url, "cover" to cover)).build()
+        )
+        return this
+    }
+
     fun build(): MessageChain {
         return messageChain
     }
