@@ -5,7 +5,7 @@ import net.lz1998.pbbot.bot.Bot
 import onebot.OnebotBase
 
 open class Msg {
-    open val messageChain: MutableList<OnebotBase.Message> = mutableListOf()
+    open var messageChain: MutableList<OnebotBase.Message> = mutableListOf()
 
     companion object {
         @JvmStatic
