@@ -123,6 +123,14 @@ open class Msg {
         return this
     }
 
+    fun gift(qq: Long, id: Int): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("gift")
+                .putAllData(mapOf("qq" to qq.toString(), "id" to id.toString())).build()
+        )
+        return this
+    }
+
     fun build(): MessageChain {
         return messageChain
     }
