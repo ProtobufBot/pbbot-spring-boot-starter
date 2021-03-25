@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.web.socket.*
 import org.springframework.web.socket.handler.BinaryWebSocketHandler
+import org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator
 import java.util.concurrent.ExecutorService
 
 @Component
@@ -37,7 +38,7 @@ class BotWebSocketHandler : BinaryWebSocketHandler() {
             session.close()
             return
         }
-        botContainer.bots[xSelfId] = botFactory.createBot(xSelfId, session)
+        botContainer.bots[xSelfId] = botFactory.createBot(xSelfId, ConcurrentWebSocketSessionDecorator(session, 3000, 4096))
         println("$xSelfId connected")
     }
 
@@ -58,7 +59,7 @@ class BotWebSocketHandler : BinaryWebSocketHandler() {
             return
         }
         if (!botContainer.bots.containsKey(xSelfId)) {
-            botContainer.bots[xSelfId] = botFactory.createBot(xSelfId, session)
+            botContainer.bots[xSelfId] = botFactory.createBot(xSelfId, ConcurrentWebSocketSessionDecorator(session, 3000, 4096))
         }
 
         val frame = Frame.parseFrom(message.payload)

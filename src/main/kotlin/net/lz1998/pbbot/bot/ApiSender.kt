@@ -151,9 +151,7 @@ class ApiSender {
         frameBuilder.ok = true
         val reqFrame = frameBuilder.build()
         val msg = BinaryMessage(reqFrame.toByteArray())
-        synchronized(session) {
-            session.sendMessage(msg)
-        }
+        session.sendMessage(msg)
         val respFrame = runBlocking {
             try {
                 withTimeout(apiTimeout) {
