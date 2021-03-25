@@ -40,7 +40,7 @@ open class Msg {
 
     fun show(url: String, effectId: Int = 40000): Msg {
         messageChain.add(
-            OnebotBase.Message.newBuilder().setType("image").putAllData(mapOf("url" to url, "type" to "flash", "effect_id" to effectId.toString())).build()
+            OnebotBase.Message.newBuilder().setType("image").putAllData(mapOf("url" to url, "type" to "show", "effect_id" to effectId.toString())).build()
         )
         return this
     }
