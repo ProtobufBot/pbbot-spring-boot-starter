@@ -38,7 +38,7 @@ class BotWebSocketHandler : BinaryWebSocketHandler() {
             session.close()
             return
         }
-        botContainer.bots[xSelfId] = botFactory.createBot(xSelfId, ConcurrentWebSocketSessionDecorator(session, 3000, 4096))
+        botContainer.bots[xSelfId] = botFactory.createBot(xSelfId, ConcurrentWebSocketSessionDecorator(session, 3000, 40960))
         println("$xSelfId connected")
     }
 
@@ -59,7 +59,7 @@ class BotWebSocketHandler : BinaryWebSocketHandler() {
             return
         }
         if (!botContainer.bots.containsKey(xSelfId)) {
-            botContainer.bots[xSelfId] = botFactory.createBot(xSelfId, ConcurrentWebSocketSessionDecorator(session, 3000, 4096))
+            botContainer.bots[xSelfId] = botFactory.createBot(xSelfId, ConcurrentWebSocketSessionDecorator(session, 3000, 40960))
         }
 
         val frame = Frame.parseFrom(message.payload)
