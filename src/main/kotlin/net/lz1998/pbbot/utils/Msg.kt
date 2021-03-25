@@ -38,6 +38,13 @@ open class Msg {
         return this
     }
 
+    fun show(url: String, effectId: Int = 40000): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("image").putAllData(mapOf("url" to url, "type" to "flash", "effect_id" to effectId.toString())).build()
+        )
+        return this
+    }
+
     fun face(id: Int): Msg {
         messageChain.add(
             OnebotBase.Message.newBuilder().setType("face").putAllData(mapOf("id" to id.toString())).build()
