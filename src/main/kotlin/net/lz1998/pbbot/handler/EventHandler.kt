@@ -43,6 +43,14 @@ class EventHandler {
         }
     }
 
+    fun handleGroupAdminNoticeEvent(bot: Bot, event: GroupAdminNoticeEvent) {
+        botProperties.pluginList.forEach { pluginClass ->
+            if (getPlugin(pluginClass)?.onGroupAdminNotice(bot, event) == BotPlugin.MESSAGE_BLOCK) {
+                return
+            }
+        }
+    }
+
     fun handleGroupDecreaseNoticeEvent(bot: Bot, event: GroupDecreaseNoticeEvent) {
         botProperties.pluginList.forEach { pluginClass ->
             if (getPlugin(pluginClass)?.onGroupDecreaseNotice(bot, event) == BotPlugin.MESSAGE_BLOCK) {
@@ -54,6 +62,14 @@ class EventHandler {
     fun handleGroupIncreaseNoticeEvent(bot: Bot, event: GroupIncreaseNoticeEvent) {
         botProperties.pluginList.forEach { pluginClass ->
             if (getPlugin(pluginClass)?.onGroupIncreaseNotice(bot, event) == BotPlugin.MESSAGE_BLOCK) {
+                return
+            }
+        }
+    }
+
+    fun handleGroupBanNoticeEvent(bot: Bot, event: GroupBanNoticeEvent) {
+        botProperties.pluginList.forEach { pluginClass ->
+            if (getPlugin(pluginClass)?.onGroupBanNotice(bot, event) == BotPlugin.MESSAGE_BLOCK) {
                 return
             }
         }
