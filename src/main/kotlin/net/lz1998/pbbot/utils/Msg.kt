@@ -40,7 +40,8 @@ open class Msg {
 
     fun show(url: String, effectId: Int = 40000): Msg {
         messageChain.add(
-            OnebotBase.Message.newBuilder().setType("image").putAllData(mapOf("url" to url, "type" to "show", "effect_id" to effectId.toString())).build()
+            OnebotBase.Message.newBuilder().setType("image")
+                .putAllData(mapOf("url" to url, "type" to "show", "effect_id" to effectId.toString())).build()
         )
         return this
     }
@@ -62,6 +63,13 @@ open class Msg {
     fun atAll(): Msg {
         messageChain.add(
             OnebotBase.Message.newBuilder().setType("at").putAllData(mapOf("qq" to "all")).build()
+        )
+        return this
+    }
+
+    fun poke(qq: Long): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("poke").putAllData(mapOf("qq" to qq.toString())).build()
         )
         return this
     }
