@@ -23,7 +23,7 @@ plugins {
 }
 
 group = "net.lz1998"
-version = "0.0.27"
+version = "0.0.28"
 
 repositories {
     mavenCentral()
