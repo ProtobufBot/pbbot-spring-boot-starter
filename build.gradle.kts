@@ -10,7 +10,7 @@ buildscript {
 }
 
 plugins {
-    id("org.springframework.boot") version "2.3.12.RELEASE"
+    id("org.springframework.boot") version "2.6.2"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
     id("com.google.protobuf") version "0.8.13"
     kotlin("plugin.spring") version "1.4.0"
@@ -23,7 +23,7 @@ plugins {
 }
 
 group = "net.lz1998"
-version = "0.0.29"
+version = "0.0.30"
 
 repositories {
     mavenCentral()
