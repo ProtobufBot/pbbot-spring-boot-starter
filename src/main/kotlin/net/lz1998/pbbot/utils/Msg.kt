@@ -81,6 +81,39 @@ open class Msg {
         return this
     }
 
+    fun qqMusic(id: Int): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("music").putAllData(mapOf("type" to "qq", "id" to id.toString()))
+                .build()
+        )
+        return this
+    }
+
+    fun neteaseMusic(id: Int): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("music").putAllData(mapOf("type" to "163", "id" to id.toString()))
+                .build()
+        )
+        return this
+    }
+
+    fun music(title: String, content: String, url: String, image: String, audio: String): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("music").putAllData(
+                mapOf(
+                    "type" to "custom",
+                    "title" to title,
+                    "content" to content,
+                    "url" to url,
+                    "image" to image,
+                    "audio" to audio,
+                )
+            )
+                .build()
+        )
+        return this
+    }
+
     fun share(url: String, title: String, content: String, image: String): Msg {
         messageChain.add(
             OnebotBase.Message.newBuilder().setType("share")
