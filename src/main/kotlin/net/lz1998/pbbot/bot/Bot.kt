@@ -133,6 +133,20 @@ interface Bot {
     }
 
     /**
+     * 点赞
+     *
+     * @param user_id 对方 QQ 号
+     * @param user_id 次数
+     * @return 结果
+     */
+    fun sendLike(user_id: Long, times: Int): SendLikeResp? {
+        val reqBuilder = SendLikeReq.newBuilder()
+        reqBuilder.userId = user_id
+        reqBuilder.times = times
+        return apiSender.sendLike(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
      * 群组踢人
      *
      * @param group_id           群号
@@ -144,6 +158,22 @@ interface Bot {
         val reqBuilder = SetGroupKickReq.newBuilder()
         reqBuilder.groupId = group_id
         reqBuilder.userId = user_id
+        reqBuilder.rejectAddRequest = reject_add_request
+        return apiSender.setGroupKick(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
+     * 群组批量踢人
+     *
+     * @param group_id           群号
+     * @param user_ids           要踢的 QQ 号
+     * @param reject_add_request 拒绝此人的加群请求
+     * @return 结果
+     */
+    fun setGroupKickBatch(group_id: Long, user_ids: List<Long>, reject_add_request: Boolean): SetGroupKickResp? {
+        val reqBuilder = SetGroupKickReq.newBuilder()
+        reqBuilder.groupId = group_id
+        reqBuilder.addAllUserIds(user_ids);
         reqBuilder.rejectAddRequest = reject_add_request
         return apiSender.setGroupKick(botSession, selfId, reqBuilder.build())
     }
@@ -192,6 +222,20 @@ interface Bot {
         reqBuilder.userId = user_id
         reqBuilder.card = card
         return apiSender.setGroupCard(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
+     * 设置群名称
+     *
+     * @param group_id 群号
+     * @param group_name  群名称
+     * @return 结果
+     */
+    fun setGroupName(group_id: Long, group_name: String?): SetGroupNameResp? {
+        val reqBuilder = SetGroupNameReq.newBuilder()
+        reqBuilder.groupId = group_id
+        reqBuilder.groupName = group_name
+        return apiSender.setGroupName(botSession, selfId, reqBuilder.build())
     }
 
     /**
