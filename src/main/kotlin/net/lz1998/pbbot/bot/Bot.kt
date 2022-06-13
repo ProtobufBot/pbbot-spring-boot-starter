@@ -114,7 +114,7 @@ interface Bot {
      * @param message_id 消息 ID
      * @return 结果
      */
-    fun deleteMsg(message_id: Int): DeleteMsgResp? {
+    fun deleteMsg(message_id: MessageReceipt): DeleteMsgResp? {
         val reqBuilder = DeleteMsgReq.newBuilder()
         reqBuilder.messageId = message_id
         return apiSender.deleteMsg(botSession, selfId, reqBuilder.build())
