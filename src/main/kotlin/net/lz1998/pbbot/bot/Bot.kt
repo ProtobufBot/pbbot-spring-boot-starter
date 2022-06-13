@@ -170,7 +170,7 @@ interface Bot {
      * @param reject_add_request 拒绝此人的加群请求
      * @return 结果
      */
-    fun setGroupKickBatch(group_id: Long, user_ids: List<Long>, reject_add_request: Boolean): SetGroupKickResp? {
+    fun setGroupKick(group_id: Long, user_ids: Iterable<Long>, reject_add_request: Boolean): SetGroupKickResp? {
         val reqBuilder = SetGroupKickReq.newBuilder()
         reqBuilder.groupId = group_id
         reqBuilder.addAllUserIds(user_ids);
