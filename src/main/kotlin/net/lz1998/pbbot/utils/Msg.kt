@@ -60,6 +60,14 @@ open class Msg {
         return this
     }
 
+    fun at(qq: Long, display: String): Msg {
+        messageChain.add(
+            OnebotBase.Message.newBuilder().setType("at").putAllData(mapOf("qq" to qq.toString(), "display" to display))
+                .build()
+        )
+        return this
+    }
+
     fun dice(value: Int): Msg {
         messageChain.add(
             OnebotBase.Message.newBuilder().setType("dice").putAllData(mapOf("value" to value.toString())).build()
