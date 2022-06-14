@@ -116,3 +116,6 @@ typealias SetRestartResp = OnebotApi.SetRestartResp
 
 typealias CleanCacheReq = OnebotApi.CleanCacheReq
 typealias CleanCacheResp = OnebotApi.CleanCacheResp
+
+typealias SetGroupSignInReq = OnebotApi.SetGroupSignInReq
+typealias SetGroupSignInResp = OnebotApi.SetGroupSignInResp

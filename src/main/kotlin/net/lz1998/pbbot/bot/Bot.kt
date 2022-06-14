@@ -399,4 +399,16 @@ interface Bot {
         reqBuilder.groupId = group_id
         return apiSender.getGroupMemberList(botSession, selfId, reqBuilder.build())
     }
+
+    /**
+     * 群打卡
+     *
+     * @param group_id 群号
+     * @return 结果
+     */
+    fun setGroupSignIn(group_id: Long): SetGroupSignInResp? {
+        val reqBuilder = SetGroupSignInReq.newBuilder()
+        reqBuilder.groupId = group_id
+        return apiSender.setGroupSignIn(botSession, selfId, reqBuilder.build())
+    }
 }

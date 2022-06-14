@@ -146,6 +146,9 @@ class ApiSender {
             is CleanCacheReq -> {
                 frameBuilder.cleanCacheReq = apiReq;frameBuilder.frameType = FrameType.TCleanCacheReq
             }
+            is SetGroupSignInReq -> {
+                frameBuilder.setGroupSignInReq = apiReq;frameBuilder.frameType = FrameType.TSetGroupSignInReq
+            }
             else -> return null
         }
         frameBuilder.ok = true
@@ -200,6 +203,7 @@ class ApiSender {
             FrameType.TGetVersionInfoResp -> respFrame.getVersionInfoResp
             FrameType.TSetRestartResp -> respFrame.setRestartResp
             FrameType.TCleanCacheResp -> respFrame.cleanCacheResp
+            FrameType.TSetGroupSignInResp -> respFrame.setGroupSignInResp
             else -> null
         }
     }
@@ -317,4 +321,7 @@ class ApiSender {
 
     fun cleanCache(session: WebSocketSession, botId: Long, apiReq: CleanCacheReq) =
         callApi(session, botId, apiReq) as CleanCacheResp?
+
+    fun setGroupSignIn(session: WebSocketSession, botId: Long, apiReq: SetGroupSignInReq) =
+        callApi(session, botId, apiReq) as SetGroupSignInResp?
 }
