@@ -1,6 +1,7 @@
 package net.lz1998.pbbot.utils
 
 import net.lz1998.pbbot.alias.MessageChain
+import net.lz1998.pbbot.alias.MessageReceipt
 import net.lz1998.pbbot.bot.Bot
 import onebot.OnebotBase
 
@@ -154,10 +155,10 @@ open class Msg {
         return this
     }
 
-    fun reply(messageId: Int): Msg {
+    fun reply(messageId: MessageReceipt): Msg {
         messageChain.add(
             OnebotBase.Message.newBuilder().setType("reply")
-                .putAllData(mapOf("message_id" to messageId.toString())).build()
+                .putAllData(mapOf("message_id" to messageId.seqsList[0].toString())).build()
         )
         return this
     }
