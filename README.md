@@ -2,9 +2,9 @@
 
 [![QQ群](https://img.shields.io/static/v1?label=QQ%E7%BE%A4&message=335783090&color=blue)](https://jq.qq.com/?_wv=1027&k=B7Of3GMZ)
 
-这是一个spring boot starter，可以用于快速开发对应于 [Go-Mirai-Client](https://github.com/protobufbot/go-Mirai-Client) 或 [Spring-Mirai-Client](https://github.com/ProtobufBot/Spring-Mirai-Client) 的消息处理中心。
+这是一个spring boot starter，可以用于快速开发对应于 [Go-Mirai-Client](https://github.com/protobufbot/go-Mirai-Client)，[pbrq](https://github.com/ProtobufBot/pbrq) 或 [Spring-Mirai-Client](https://github.com/ProtobufBot/Spring-Mirai-Client) 的消息处理中心。
 
-仅用于编写业务逻辑，不涉及登陆等功能，建议配合[Go-Mirai-Client](https://github.com/protobufbot/Go-Mirai-Client)使用，下载地址：[Go-Mirai-Client-Release](https://github.com/ProtobufBot/Go-Mirai-Client/releases)
+仅用于编写业务逻辑，不涉及登陆等功能，建议配合[pbrq](https://github.com/ProtobufBot/pbrq)使用，下载地址：[pbrq-Release](https://github.com/ProtobufBot/pbrq/releases)
 
 文档：https://blog.lz1998.net/blogs/bot/2020/pbbot-doc/
 
@@ -16,7 +16,7 @@
     <dependency>
         <groupId>net.lz1998</groupId>
         <artifactId>pbbot-spring-boot-starter</artifactId>
-        <version>0.0.19</version>
+        <version>0.0.38</version>
     </dependency>
 ```
 最新版：[![maven](https://img.shields.io/maven-central/v/net.lz1998/pbbot-spring-boot-starter)](https://search.maven.org/artifact/net.lz1998/pbbot-spring-boot-starter)
