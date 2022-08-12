@@ -411,4 +411,74 @@ interface Bot {
         reqBuilder.groupId = group_id
         return apiSender.setGroupSignIn(botSession, selfId, reqBuilder.build())
     }
+
+    /**
+     * 发送群音乐
+     *
+     * @param groupId 群号
+     * @param musicType 音乐类型 qq、164、migu、kugou、kuwo
+     * @param title 标题
+     * @param brief 简介
+     * @param summary 概览
+     * @param url 链接
+     * @param pictureUrl 图片链接
+     * @param musicUrl 音乐链接
+     * @return 结果
+     */
+    fun sendGroupMusic(
+        groupId: Long,
+        musicType: String,
+        title: String,
+        brief: String,
+        summary: String,
+        url: String,
+        pictureUrl: String,
+        musicUrl: String
+    ): SendMusicResp? {
+        val reqBuilder = SendMusicReq.newBuilder()
+        reqBuilder.groupId = groupId
+        reqBuilder.type = musicType
+        reqBuilder.title = title
+        reqBuilder.brief = brief
+        reqBuilder.summary = summary
+        reqBuilder.url = url
+        reqBuilder.pictureUrl = pictureUrl
+        reqBuilder.musicUrl = musicUrl
+        return apiSender.sendMusic(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
+     * 发送好友音乐
+     *
+     * @param userId 群号
+     * @param musicType 音乐类型 qq、164、migu、kugou、kuwo
+     * @param title 标题
+     * @param brief 简介
+     * @param summary 概览
+     * @param url 链接
+     * @param pictureUrl 图片链接
+     * @param musicUrl 音乐链接
+     * @return 结果
+     */
+    fun sendFriendMusic(
+        userId: Long,
+        musicType: String,
+        title: String,
+        brief: String,
+        summary: String,
+        url: String,
+        pictureUrl: String,
+        musicUrl: String
+    ): SendMusicResp? {
+        val reqBuilder = SendMusicReq.newBuilder()
+        reqBuilder.userId = userId
+        reqBuilder.type = musicType
+        reqBuilder.title = title
+        reqBuilder.brief = brief
+        reqBuilder.summary = summary
+        reqBuilder.url = url
+        reqBuilder.pictureUrl = pictureUrl
+        reqBuilder.musicUrl = musicUrl
+        return apiSender.sendMusic(botSession, selfId, reqBuilder.build())
+    }
 }

@@ -119,3 +119,13 @@ typealias CleanCacheResp = OnebotApi.CleanCacheResp
 
 typealias SetGroupSignInReq = OnebotApi.SetGroupSignInReq
 typealias SetGroupSignInResp = OnebotApi.SetGroupSignInResp
+
+
+typealias SendMusicReq = OnebotApi.SendMusicReq
+typealias SendMusicResp = OnebotApi.SendMusicResp
+
+typealias SendGroupPokeReq = OnebotApi.SendGroupPokeReq
+typealias SendGroupPokeResp = OnebotApi.SendGroupPokeResp
+
+typealias SendFriendPokeReq = OnebotApi.SendFriendPokeReq
+typealias SendFriendPokeResp = OnebotApi.SendFriendPokeResp

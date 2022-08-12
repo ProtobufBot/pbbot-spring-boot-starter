@@ -324,4 +324,7 @@ class ApiSender {
 
     fun setGroupSignIn(session: WebSocketSession, botId: Long, apiReq: SetGroupSignInReq) =
         callApi(session, botId, apiReq) as SetGroupSignInResp?
+
+    fun sendMusic(session: WebSocketSession, botId: Long, apiReq: SendMusicReq) =
+        callApi(session, botId, apiReq) as SendMusicResp?
 }
