@@ -115,6 +115,14 @@ class EventHandler {
         }
     }
 
+    fun handleGroupTempMessageEvent(bot: Bot, event: GroupTempMessageEvent) {
+        botProperties.pluginList.forEach { pluginClass ->
+            if (getPlugin(pluginClass)?.onGroupTempMessage(bot, event) == BotPlugin.MESSAGE_BLOCK) {
+                return
+            }
+        }
+    }
+
     fun handleUnknown(event: MessageLite?) {
 
     }

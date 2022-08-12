@@ -137,6 +137,17 @@ abstract class BotPlugin {
         return MESSAGE_IGNORE
     }
 
+    /**
+     * 收到群临时消息时调用此方法
+     *
+     * @param bot    机器人对象
+     * @param event 事件内容
+     * @return 是否继续处理下一个插件, MESSAGE_BLOCK表示不继续，MESSAGE_IGNORE表示继续
+     */
+    open fun onGroupTempMessage(bot: Bot, event: GroupTempMessageEvent): Int {
+        return MESSAGE_IGNORE
+    }
+
     companion object {
         const val MESSAGE_BLOCK = 1
         const val MESSAGE_IGNORE = 0

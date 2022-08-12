@@ -36,6 +36,7 @@ class FrameHandler {
             FrameType.TFriendRecallNoticeEvent -> eventHandler.handleFriendRecallNoticeEvent(bot,frame.friendRecallNoticeEvent)
             FrameType.TFriendRequestEvent -> eventHandler.handleFriendRequestEvent(bot, frame.friendRequestEvent)
             FrameType.TGroupRequestEvent -> eventHandler.handleGroupRequestEvent(bot, frame.groupRequestEvent)
+            FrameType.TGroupTempMessageEvent -> eventHandler.handleGroupTempMessageEvent(bot, frame.groupTempMessageEvent)
 
             // 如果不是 event，说明是 api 调用的响应结果
             else -> apiSender.echoFutureMap[frame.echo]?.complete(frame)
