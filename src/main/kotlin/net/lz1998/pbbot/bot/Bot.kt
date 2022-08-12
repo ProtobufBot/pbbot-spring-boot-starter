@@ -450,7 +450,7 @@ interface Bot {
     /**
      * 发送好友音乐
      *
-     * @param userId 群号
+     * @param userId 账号
      * @param musicType 音乐类型 qq、164、migu、kugou、kuwo
      * @param title 标题
      * @param brief 简介
@@ -480,5 +480,36 @@ interface Bot {
         reqBuilder.pictureUrl = pictureUrl
         reqBuilder.musicUrl = musicUrl
         return apiSender.sendMusic(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
+     * 发送群戳一戳
+     *
+     * @param groupId 群号
+     * @param userId 账号
+     * @return 结果
+     */
+    fun sendGroupPoke(
+        groupId: Long,
+        userId: Long,
+    ): SendGroupPokeResp? {
+        val reqBuilder = SendGroupPokeReq.newBuilder()
+        reqBuilder.groupId = groupId
+        reqBuilder.userId = userId
+        return apiSender.sendGroupPoke(botSession, selfId, reqBuilder.build())
+    }
+
+    /**
+     * 发送好友戳一戳
+     *
+     * @param userId 账号
+     * @return 结果
+     */
+    fun sendFriendPoke(
+        userId: Long,
+    ): SendFriendPokeResp? {
+        val reqBuilder = SendFriendPokeReq.newBuilder()
+        reqBuilder.userId = userId
+        return apiSender.sendFriendPoke(botSession, selfId, reqBuilder.build())
     }
 }

@@ -152,6 +152,12 @@ class ApiSender {
             is SendMusicReq -> {
                 frameBuilder.sendMusicReq = apiReq;frameBuilder.frameType = FrameType.TSendMusicReq
             }
+            is SendGroupPokeReq -> {
+                frameBuilder.sendGroupPokeReq = apiReq;frameBuilder.frameType = FrameType.TSendGroupPokeReq
+            }
+            is SendFriendPokeReq -> {
+                frameBuilder.sendFriendPokeReq = apiReq;frameBuilder.frameType = FrameType.TSendFriendPokeReq
+            }
             else -> return null
         }
         frameBuilder.ok = true
@@ -207,6 +213,9 @@ class ApiSender {
             FrameType.TSetRestartResp -> respFrame.setRestartResp
             FrameType.TCleanCacheResp -> respFrame.cleanCacheResp
             FrameType.TSetGroupSignInResp -> respFrame.setGroupSignInResp
+            FrameType.TSendMusicResp -> respFrame.sendMusicResp
+            FrameType.TSendGroupPokeReq -> respFrame.sendGroupPokeResp
+            FrameType.TSendFriendPokeResp -> respFrame.sendFriendPokeResp
             else -> null
         }
     }
@@ -330,4 +339,10 @@ class ApiSender {
 
     fun sendMusic(session: WebSocketSession, botId: Long, apiReq: SendMusicReq) =
         callApi(session, botId, apiReq) as SendMusicResp?
+
+    fun sendGroupPoke(session: WebSocketSession, botId: Long, apiReq: SendGroupPokeReq) =
+        callApi(session, botId, apiReq) as SendGroupPokeResp?
+
+    fun sendFriendPoke(session: WebSocketSession, botId: Long, apiReq: SendFriendPokeReq) =
+        callApi(session, botId, apiReq) as SendFriendPokeResp?
 }
