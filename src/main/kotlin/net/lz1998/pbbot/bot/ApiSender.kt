@@ -149,6 +149,9 @@ class ApiSender {
             is SetGroupSignInReq -> {
                 frameBuilder.setGroupSignInReq = apiReq;frameBuilder.frameType = FrameType.TSetGroupSignInReq
             }
+            is SendMusicReq -> {
+                frameBuilder.sendMusicReq = apiReq;frameBuilder.frameType = FrameType.TSendMusicReq
+            }
             else -> return null
         }
         frameBuilder.ok = true
